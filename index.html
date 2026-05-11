@@ -3,24 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SIGNAL — Intelligence at the Edge of Now</title>
+  <title>Nathan Reitinger — Artificial Intelligence</title>
   <meta name="description" content="Long-form essays on AI, warfare, neural networks, and synthetic data. A literary intelligence briefing for the thinking reader." />
-
-  <!-- SEO / Open Graph -->
-  <meta property="og:title" content="SIGNAL — Intelligence at the Edge of Now" />
+  <meta property="og:title" content="Nathan Reitinger — Artificial Intelligence" />
   <meta property="og:description" content="Long-form essays on AI, warfare, neural networks, and synthetic data." />
   <meta property="og:type" content="website" />
-
-  <!-- Google indexing hint for PDFs (linked inline) -->
-  <link rel="canonical" href="https://yourusername.github.io/" />
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* ─── RESET & ROOT ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -34,17 +26,14 @@
       --rule-med:  rgba(232, 226, 217, 0.18);
       --accent:    #c9a96e;
       --accent-2:  #8fb8a0;
-
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans:  'Instrument Sans', system-ui, sans-serif;
       --mono:  'JetBrains Mono', monospace;
-
       --max: 760px;
       --wide: 1100px;
     }
 
     html { font-size: 18px; scroll-behavior: smooth; }
-
     body {
       background: var(--paper);
       color: var(--ink);
@@ -54,7 +43,7 @@
       overflow-x: hidden;
     }
 
-    /* ─── MASTHEAD ─────────────────────────────────────────────── */
+    /* ─── MASTHEAD ─── */
     .masthead {
       border-bottom: 1px solid var(--rule-med);
       padding: 2rem 2.5rem;
@@ -69,7 +58,6 @@
       backdrop-filter: blur(12px);
       z-index: 100;
     }
-
     .masthead-wordmark {
       font-family: var(--mono);
       font-size: 0.72rem;
@@ -78,13 +66,7 @@
       color: var(--accent);
       text-decoration: none;
     }
-
-    .masthead-nav {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
+    .masthead-nav { display: flex; gap: 2rem; list-style: none; }
     .masthead-nav a {
       font-family: var(--sans);
       font-size: 0.68rem;
@@ -94,10 +76,9 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-
     .masthead-nav a:hover { color: var(--ink); }
 
-    /* ─── HERO ─────────────────────────────────────────────────── */
+    /* ─── HERO ─── */
     .hero {
       padding: 7rem 2.5rem 5rem;
       max-width: var(--wide);
@@ -107,7 +88,6 @@
       gap: 4rem;
       align-items: end;
     }
-
     .hero-issue {
       font-family: var(--mono);
       font-size: 0.65rem;
@@ -116,7 +96,6 @@
       color: var(--accent);
       margin-bottom: 1.5rem;
     }
-
     .hero-title {
       font-size: clamp(3.2rem, 7vw, 5.5rem);
       font-weight: 300;
@@ -124,16 +103,8 @@
       letter-spacing: -0.02em;
       color: var(--ink);
     }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-right {
-      padding-bottom: 0.5rem;
-    }
-
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-right { padding-bottom: 0.5rem; }
     .hero-lede {
       font-size: 1.3rem;
       font-weight: 300;
@@ -141,14 +112,7 @@
       color: var(--ink-muted);
       margin-bottom: 2rem;
     }
-
-    .hero-rule {
-      width: 3rem;
-      height: 1px;
-      background: var(--accent);
-      margin-bottom: 2rem;
-    }
-
+    .hero-rule { width: 3rem; height: 1px; background: var(--accent); margin-bottom: 2rem; }
     .hero-byline {
       font-family: var(--sans);
       font-size: 0.72rem;
@@ -157,39 +121,64 @@
       color: var(--ink-dim);
     }
 
-    /* ─── DIVIDER RULE ─────────────────────────────────────────── */
-    .section-rule {
-      border: none;
-      border-top: 1px solid var(--rule);
-      margin: 0 2.5rem;
-    }
-
-    /* ─── SECTION LABELS ───────────────────────────────────────── */
-    .section-header {
-      padding: 3.5rem 2.5rem 0;
+    /* ─── DRAFT NOTICE ─── */
+    .draft-notice {
       max-width: var(--wide);
       margin: 0 auto;
+      padding: 0 2.5rem 0;
     }
-
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
+    .draft-notice-inner {
+      background: var(--paper-3);
+      border: 1px solid var(--rule-med);
+      border-left: 3px solid var(--accent);
+      padding: 1.2rem 1.75rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
-
-    .section-label::after {
-      content: '';
+    .draft-notice-text {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: var(--ink-muted);
       flex: 1;
-      height: 1px;
-      background: var(--rule);
+    }
+    .draft-notice-text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .amazon-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: #FF9900;
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .amazon-link:hover { opacity: 0.85; }
+    .amazon-logo {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--paper);
+      text-decoration: none;
     }
 
-    /* ─── ARTICLE CARDS GRID ───────────────────────────────────── */
+    /* ─── DIVIDER ─── */
+    .section-rule { border: none; border-top: 1px solid var(--rule); margin: 0 2.5rem; }
+
+    /* ─── ARTICLE CARDS GRID ─── */
     .articles-grid {
       padding: 2.5rem 2.5rem 6rem;
       max-width: var(--wide);
@@ -198,29 +187,17 @@
       grid-template-columns: 1.4fr 1fr;
       gap: 0;
     }
-
-    /* Featured (left) card */
     .card-featured {
       padding: 3rem 3rem 3rem 0;
       border-right: 1px solid var(--rule);
     }
-
-    /* Secondary cards (right column) */
-    .cards-secondary {
-      display: flex;
-      flex-direction: column;
-    }
-
+    .cards-secondary { display: flex; flex-direction: column; }
     .card-secondary {
       padding: 2rem 0 2rem 3rem;
       border-bottom: 1px solid var(--rule);
     }
+    .card-secondary:last-child { border-bottom: none; }
 
-    .card-secondary:last-child {
-      border-bottom: none;
-    }
-
-    /* Shared card elements */
     .card-topic {
       font-family: var(--mono);
       font-size: 0.6rem;
@@ -229,9 +206,7 @@
       color: var(--accent-2);
       margin-bottom: 0.8rem;
     }
-
     .card-featured .card-topic { color: var(--accent); }
-
     .card-number {
       font-family: var(--mono);
       font-size: 0.6rem;
@@ -239,7 +214,6 @@
       color: var(--ink-dim);
       margin-bottom: 0.5rem;
     }
-
     .card-title {
       font-size: 2.4rem;
       font-weight: 400;
@@ -248,39 +222,17 @@
       margin-bottom: 1.25rem;
       color: var(--ink);
     }
-
-    .card-title a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    .card-title a { color: inherit; text-decoration: none; transition: color 0.2s; }
     .card-title a:hover { color: var(--accent); }
-
-    .card-secondary .card-title {
-      font-size: 1.5rem;
-      line-height: 1.2;
-      margin-bottom: 0.8rem;
-    }
-
+    .card-secondary .card-title { font-size: 1.5rem; line-height: 1.2; margin-bottom: 0.8rem; }
     .card-excerpt {
       font-size: 0.98rem;
       line-height: 1.7;
       color: var(--ink-muted);
       margin-bottom: 1.5rem;
     }
-
-    .card-secondary .card-excerpt {
-      font-size: 0.88rem;
-      margin-bottom: 1rem;
-    }
-
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
+    .card-secondary .card-excerpt { font-size: 0.88rem; margin-bottom: 1rem; }
+    .card-meta { display: flex; align-items: center; gap: 1.5rem; }
     .card-cta {
       font-family: var(--sans);
       font-size: 0.68rem;
@@ -291,10 +243,13 @@
       border-bottom: 1px solid var(--accent);
       padding-bottom: 1px;
       transition: opacity 0.2s;
+      cursor: pointer;
+      background: none;
+      border-left: none;
+      border-top: none;
+      border-right: none;
     }
-
     .card-cta:hover { opacity: 0.7; }
-
     .card-pdf {
       font-family: var(--sans);
       font-size: 0.68rem;
@@ -304,11 +259,20 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-
     .card-pdf:hover { color: var(--ink-muted); }
+    .coming-soon-badge {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      border: 1px solid var(--rule);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
 
-    /* ─── ARTICLE PAGE ─────────────────────────────────────────── */
-    #article-neural { display: none; }
+    /* ─── ARTICLE PAGES ─── */
+    #article-neural, #article-warfare, #article-synthetic { display: none; }
 
     .article-header {
       padding: 6rem 2.5rem 4rem;
@@ -319,7 +283,6 @@
       gap: 4rem;
       align-items: start;
     }
-
     .article-kicker {
       font-family: var(--mono);
       font-size: 0.6rem;
@@ -328,7 +291,6 @@
       color: var(--accent);
       margin-bottom: 1.5rem;
     }
-
     .article-headline {
       font-size: clamp(2.8rem, 5vw, 4.5rem);
       font-weight: 300;
@@ -336,11 +298,7 @@
       letter-spacing: -0.02em;
       margin-bottom: 0;
     }
-
-    .article-meta-block {
-      padding-top: 1rem;
-    }
-
+    .article-meta-block { padding-top: 1rem; }
     .article-standfirst {
       font-size: 1.2rem;
       font-weight: 400;
@@ -349,7 +307,6 @@
       margin-bottom: 2.5rem;
       font-style: italic;
     }
-
     .article-byline-row {
       display: flex;
       align-items: baseline;
@@ -359,21 +316,8 @@
       gap: 1rem;
       flex-wrap: wrap;
     }
-
-    .article-author {
-      font-family: var(--sans);
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink);
-    }
-
-    .article-date {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--ink-dim);
-    }
-
+    .article-author { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
+    .article-date { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-dim); }
     .article-pdf-link {
       font-family: var(--sans);
       font-size: 0.68rem;
@@ -386,20 +330,14 @@
       border-radius: 2px;
       transition: all 0.2s;
     }
+    .article-pdf-link:hover { background: var(--accent); color: var(--paper); }
 
-    .article-pdf-link:hover {
-      background: var(--accent);
-      color: var(--paper);
-    }
-
-    /* ─── ARTICLE BODY ─────────────────────────────────────────── */
+    /* ─── ARTICLE BODY ─── */
     .article-body {
       max-width: 680px;
       margin: 0 auto;
       padding: 0 2.5rem 8rem;
     }
-
-    /* Drop cap */
     .article-body > p:first-of-type::first-letter {
       float: left;
       font-size: 5.5rem;
@@ -410,91 +348,43 @@
       color: var(--accent);
       font-family: var(--serif);
     }
+    .article-body p { font-size: 1.08rem; line-height: 1.82; margin-bottom: 1.5em; color: var(--ink); }
+    .article-body h2 { font-size: 1.9rem; font-weight: 400; letter-spacing: -0.01em; margin: 3.5rem 0 1.25rem; line-height: 1.2; }
+    .article-body h3 { font-family: var(--sans); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin: 3rem 0 1rem; }
 
-    .article-body p {
-      font-size: 1.08rem;
-      line-height: 1.82;
-      margin-bottom: 1.5em;
-      color: var(--ink);
-    }
-
-    .article-body h2 {
-      font-size: 1.9rem;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      margin: 3.5rem 0 1.25rem;
-      line-height: 1.2;
-    }
-
-    .article-body h3 {
-      font-family: var(--sans);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 3rem 0 1rem;
-    }
-
-    /* Pull quote */
     .pull-quote {
       border-left: 2px solid var(--accent);
       padding: 1rem 0 1rem 2rem;
       margin: 3rem 0 3rem -0.5rem;
     }
+    .pull-quote p { font-size: 1.55rem !important; font-style: italic; font-weight: 300; line-height: 1.45 !important; color: var(--ink) !important; margin-bottom: 0.5rem !important; }
+    .pull-quote cite { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-dim); font-style: normal; }
 
-    .pull-quote p {
-      font-size: 1.55rem !important;
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.45 !important;
-      color: var(--ink) !important;
-      margin-bottom: 0.5rem !important;
-    }
+    .lede { font-size: 1.25rem !important; font-weight: 300; line-height: 1.7 !important; color: var(--ink-muted) !important; }
 
-    .pull-quote cite {
-      font-family: var(--sans);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-      font-style: normal;
-    }
-
-    /* Lede paragraph */
-    .lede {
-      font-size: 1.25rem !important;
-      font-weight: 300;
-      line-height: 1.7 !important;
-      color: var(--ink-muted) !important;
-    }
-
-    /* Footnote / aside */
     .article-aside {
       border-top: 1px solid var(--rule);
       border-bottom: 1px solid var(--rule);
       padding: 1.5rem 0;
       margin: 3rem 0;
     }
+    .article-aside p { font-family: var(--sans); font-size: 0.82rem !important; line-height: 1.6 !important; color: var(--ink-dim) !important; margin-bottom: 0 !important; }
 
-    .article-aside p {
-      font-family: var(--sans);
-      font-size: 0.82rem !important;
-      line-height: 1.6 !important;
-      color: var(--ink-dim) !important;
-      margin-bottom: 0 !important;
-    }
-
-    /* Section ornament */
-    .section-ornament {
-      text-align: center;
-      color: var(--ink-dim);
-      font-size: 1.5rem;
+    /* Draft notice inline in article */
+    .article-draft-note {
+      background: var(--paper-3);
+      border: 1px solid var(--rule-med);
+      border-left: 3px solid var(--accent);
+      padding: 1.2rem 1.5rem;
       margin: 3rem 0;
-      letter-spacing: 0.5em;
     }
+    .article-draft-note p { font-family: var(--sans); font-size: 0.82rem !important; line-height: 1.6 !important; color: var(--ink-dim) !important; margin-bottom: 0 !important; }
+    .article-draft-note a { color: #FF9900; text-decoration: none; border-bottom: 1px solid rgba(255,153,0,0.4); }
+    .article-draft-note a:hover { border-bottom-color: #FF9900; }
 
-    /* ─── BACK BUTTON ──────────────────────────────────────────── */
+    .section-ornament { text-align: center; color: var(--ink-dim); font-size: 1.5rem; margin: 3rem 0; letter-spacing: 0.5em; }
+
+    /* ─── BACK BUTTON ─── */
     .back-btn {
       display: inline-flex;
       align-items: center;
@@ -511,22 +401,9 @@
       padding: 2rem 2.5rem;
       transition: color 0.2s;
     }
-
     .back-btn:hover { color: var(--ink); }
 
-    /* ─── COMING SOON CARD ─────────────────────────────────────── */
-    .coming-soon-badge {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-      border: 1px solid var(--rule);
-      padding: 0.2rem 0.6rem;
-      border-radius: 2px;
-    }
-
-    /* ─── FOOTER ───────────────────────────────────────────────── */
+    /* ─── FOOTER ─── */
     footer {
       border-top: 1px solid var(--rule);
       padding: 3rem 2.5rem;
@@ -538,205 +415,195 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
+    .footer-wordmark { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
+    .footer-copy { font-family: var(--sans); font-size: 0.68rem; color: var(--ink-dim); }
 
-    .footer-wordmark {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
+    /* ─── FADE IN ─── */
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
 
-    .footer-copy {
-      font-family: var(--sans);
-      font-size: 0.68rem;
-      color: var(--ink-dim);
-    }
-
-    /* ─── SCROLL FADE-IN ───────────────────────────────────────── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ─── RESPONSIVE ───────────────────────────────────────────── */
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      .hero, .articles-grid, .article-header {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .card-featured {
-        padding: 2rem 0;
-        border-right: none;
-        border-bottom: 1px solid var(--rule);
-      }
-
-      .card-secondary {
-        padding: 2rem 0;
-      }
-
+      .hero, .articles-grid, .article-header { grid-template-columns: 1fr; gap: 2rem; }
+      .card-featured { padding: 2rem 0; border-right: none; border-bottom: 1px solid var(--rule); }
+      .card-secondary { padding: 2rem 0; }
       .hero { padding: 4rem 1.5rem 3rem; }
-
       .masthead { padding: 1.5rem; }
-
       .masthead-nav { display: none; }
-
-      .section-header, .articles-grid, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
-
+      .draft-notice, .articles-grid, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
       .article-header { padding: 4rem 1.5rem 2rem; }
-
       .article-body { padding: 0 1.5rem 5rem; }
-
       .card-title { font-size: 1.9rem; }
+      .draft-notice-inner { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!--  HOME PAGE                                                  -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════ HOME PAGE ═══════════════ -->
   <div id="home">
 
-    <!-- Masthead -->
     <header class="masthead">
-      <a class="masthead-wordmark" href="#">Signal</a>
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">
+        Nathan Reitinger
+      </a>
+
       <nav>
         <ul class="masthead-nav">
-          <li><a href="#articles">Essays</a></li>
-          <li><a href="#about">About</a></li>
+          <!-- <li><a href="#articles">Chapters</a></li> -->
+
+          <li>
+            <a href="https://github.com/nathanReitinger/ai-encyclopedia" target="_blank" rel="noopener" class="github-link" aria-label="GitHub">
+              <!-- GitHub Icon (inline SVG) -->
+              <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .5C5.73.5.75 5.62.75 12.1c0 5.2 3.44 9.62 8.2 11.18.6.12.82-.27.82-.58v-2.1c-3.34.75-4.04-1.65-4.04-1.65-.55-1.45-1.35-1.84-1.35-1.84-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.3 1.86 1.3 1.08 1.9 2.82 1.35 3.5 1.03.11-.8.42-1.35.76-1.66-2.66-.31-5.46-1.37-5.46-6.1 0-1.35.47-2.46 1.25-3.33-.13-.31-.54-1.58.12-3.3 0 0 1.02-.33 3.34 1.27.97-.28 2.02-.42 3.06-.43 1.04.01 2.09.15 3.06.43 2.32-1.6 3.34-1.27 3.34-1.27.66 1.72.25 2.99.12 3.3.78.87 1.25 1.98 1.25 3.33 0 4.74-2.81 5.79-5.49 6.09.43.39.81 1.16.81 2.34v3.46c0 .31.22.7.83.58 4.76-1.56 8.2-5.98 8.2-11.18C23.25 5.62 18.27.5 12 .5z"/>
+              </svg>
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
 
-    <!-- Hero -->
     <section class="hero fade-in">
       <div class="hero-left">
-        <p class="hero-issue">Vol. I &nbsp;·&nbsp; Intelligence &amp; Machine</p>
-        <h1 class="hero-title">At the <em>edge</em><br>of now</h1>
+        <p class="hero-issue">AI - Encyclopedia</p>
+        <h1 class="hero-title">At the <em>edge</em><br></h1>
       </div>
       <div class="hero-right">
         <p class="hero-lede">
-          Three long-form essays on the technologies reshaping conflict, cognition, and the nature of knowledge itself. Written for the reader who wants to understand, not just consume.
+          Three long-form chapters on the technologies reshaping conflict, cognition, and the nature of knowledge itself.
         </p>
         <div class="hero-rule"></div>
-        <p class="hero-byline">Essays &nbsp;·&nbsp; Research &nbsp;·&nbsp; Primary Sources</p>
+        <p class="hero-byline">Neural Networks &nbsp;·&nbsp; Warfare &nbsp;·&nbsp; Synthetic Data</p>
       </div>
     </section>
 
     <hr class="section-rule" />
 
-    <!-- Section label -->
-    <div class="section-header" id="articles">
-      <p class="section-label">In this issue</p>
+    <!-- Draft notice banner -->
+    <div class="draft-notice" style="padding-top: 2.5rem; padding-bottom: 0;">
+      <div class="draft-notice-inner">
+        <p class="draft-notice-text">
+          <strong>These are draft chapters.</strong> The final versions appear in the 
+          <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em> — a comprehensive reference work available now. If you find these chapters valuable, consider picking up the full volume.
+        </p>
+
+        <a class="amazon-link"
+           href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898"
+           target="_blank"
+           rel="noopener">
+
+          <!-- Amazon icon (Simple Icons CDN) -->
+          <img 
+            src="https://cdn.simpleicons.org/amazon/ffffff"
+            alt="Amazon"
+            class="amazon-icon"
+            width="18"
+            height="18"
+          />
+
+          <span>Buy the Book</span>
+        </a>
+      </div>
     </div>
 
-    <!-- Article Grid -->
-    <div class="articles-grid">
+    <div style="padding: 2.5rem 2.5rem 0; max-width: var(--wide); margin: 0 auto;">
+      <!-- no label -->
+    </div>
+
+    <div class="articles-grid" id="articles">
 
       <!-- Featured: Neural Networks -->
       <article class="card-featured fade-in">
         <p class="card-topic">Neural Networks</p>
         <h2 class="card-title">
-          <a href="#" onclick="showArticle(); return false;">
+          <a href="#" onclick="showArticle('article-neural'); return false;">
             The Architecture of Thought: How Neural Networks Learn to See the World
           </a>
         </h2>
         <p class="card-excerpt">
-          Beneath the surface of every modern AI system lies a lattice of weighted connections — a synthetic cortex that, given enough data and time, teaches itself to recognize patterns no human ever explicitly programmed. What exactly is happening inside these networks? And why does it matter for everything from battlefield intelligence to the future of human cognition?
+          One of the most common concepts surrounding artificial intelligence is the term "neural network." As this entry discusses, the neural network is not only surprisingly simple, but it also illuminates the functionality and limitations of even the most advanced machine learning models used today. A neural network is a collection of mathematical functions working in unison to process numerical input in a way that produces correct, "right" output — and from that spare definition, everything from autonomous vehicles to lethal weapons systems becomes possible.
         </p>
         <div class="card-meta">
-          <a class="card-cta" href="#" onclick="showArticle(); return false;">Read Essay →</a>
-          <a class="card-pdf" href="neural-networks.pdf" target="_blank" rel="noopener">↓ PDF</a>
+          <a class="card-cta" href="#" onclick="showArticle('article-neural'); return false;">Read Chapter →</a>
+          <a class="card-pdf" href="pdfs/neural-networks.pdf" target="_blank" rel="noopener">↓ PDF</a>
         </div>
       </article>
 
-      <!-- Secondary cards -->
       <div class="cards-secondary">
 
-        <!-- Warfare -->
         <article class="card-secondary fade-in">
           <p class="card-number">02</p>
           <p class="card-topic">Warfare</p>
           <h2 class="card-title">
-            <a href="#">Autonomous Kill Chains: AI Decision-Making on the Lethal Edge</a>
+            <a href="#" onclick="showArticle('article-warfare'); return false;">Autonomous Kill Chains: AI Decision-Making on the Lethal Edge</a>
           </h2>
           <p class="card-excerpt">
-            As militaries race to integrate machine intelligence into targeting and command, the question is no longer whether AI will decide who lives and who dies — but who is accountable when it does.
+            What happens when artificial intelligence is given the power to make life-and-death decisions? Is it ever desirable for a machine to decide if a human lives or dies — and if so, what restrictions should constrain it? Lethal autonomous weapons systems represent one of the most difficult frontiers opened by AI: accountability gaps, just-war doctrine, and machines empowered to select and engage targets without human intervention.
           </p>
           <div class="card-meta">
-            <span class="coming-soon-badge">Coming Soon</span>
-            <a class="card-pdf" href="warfare.pdf" target="_blank" rel="noopener">↓ PDF</a>
+            <a class="card-cta" href="#" onclick="showArticle('article-warfare'); return false;">Read Chapter →</a>
+            <a class="card-pdf" href="pdfs/warfare.pdf" target="_blank" rel="noopener">↓ PDF</a>
           </div>
         </article>
 
-        <!-- Synthetic Data -->
         <article class="card-secondary fade-in">
           <p class="card-number">03</p>
           <p class="card-topic">Synthetic Data</p>
           <h2 class="card-title">
-            <a href="#">The Invented World: How Synthetic Data Is Feeding the Machine</a>
+            <a href="#" onclick="showArticle('article-synthetic'); return false;">The Invented World: How Synthetic Data Is Feeding the Machine</a>
           </h2>
           <p class="card-excerpt">
-            Training AI on AI-generated data was once considered a dead end — a hall of mirrors leading to collapse. Now it may be the only path forward. The epistemology of a training set matters more than anyone expected.
+            Generative AI is a general-purpose tool with many applications — but of particular interest is what happens when generation is pointed at data itself. Synthetic data promises to solve problems of scale, privacy, and legal risk all at once. It may be no silver bullet, but it reveals something profound about the epistemology of a training set, and about who controls what machines learn.
           </p>
           <div class="card-meta">
-            <span class="coming-soon-badge">Coming Soon</span>
-            <a class="card-pdf" href="synthetic-data.pdf" target="_blank" rel="noopener">↓ PDF</a>
+            <a class="card-cta" href="#" onclick="showArticle('article-synthetic'); return false;">Read Chapter →</a>
+            <a class="card-pdf" href="pdfs/synthetic-data.pdf" target="_blank" rel="noopener">↓ PDF</a>
           </div>
         </article>
 
       </div>
-    </div><!-- /articles-grid -->
+    </div>
 
     <hr class="section-rule" />
 
     <footer id="about">
-      <span class="footer-wordmark">Signal</span>
-      <span class="footer-copy">Essays on intelligence, artificial and otherwise. All rights reserved.</span>
+      <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
+      <span class="footer-copy">Essays on warfare, synthetic data, and neural networks.</span>
     </footer>
 
   </div><!-- /home -->
 
 
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!--  ARTICLE: NEURAL NETWORKS                                   -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════ ARTICLE: NEURAL NETWORKS ═══════════════ -->
   <div id="article-neural">
 
     <header class="masthead">
-      <a class="masthead-wordmark" href="#">Signal</a>
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">Nathan Reitinger</a>
       <nav>
         <ul class="masthead-nav">
-          <li><a href="#" onclick="showHome(); return false;">← All Essays</a></li>
+          <li><a href="#" onclick="showHome(); return false;">← All Chapters</a></li>
         </ul>
       </nav>
     </header>
 
-    <button class="back-btn" onclick="showHome()">← Back to all essays</button>
+    <button class="back-btn" onclick="showHome()">← Back to all chapters</button>
 
     <div class="article-header fade-in">
       <div>
-        <p class="article-kicker">Neural Networks &nbsp;·&nbsp; Essay No. 01</p>
-        <h1 class="article-headline">The Architecture of Thought</h1>
+        <p class="article-kicker">Neural Networks &nbsp;·&nbsp; Chapter 64</p>
+        <h1 class="article-headline">Neural Networks</h1>
       </div>
       <div class="article-meta-block">
         <p class="article-standfirst">
-          How a mathematical metaphor for the brain became the most consequential technology of the century — and what the inside of a neural network actually reveals about the nature of intelligence itself.
+          A neural network is a collection of simple, singular functions that take numerical input, process that input through a series of mathematical operations, and produce an output. From this spare foundation, everything changes.
         </p>
         <div class="article-byline-row">
           <div>
-            <p class="article-author">By [Your Name]</p>
-            <p class="article-date">2024 &nbsp;·&nbsp; 12 min read</p>
+            <p class="article-author">By Nathan Reitinger</p>
+            <p class="article-date">Encyclopedia of Artificial Intelligence and Law &nbsp;·&nbsp; Draft</p>
           </div>
-          <a class="article-pdf-link" href="neural-networks.pdf" target="_blank" rel="noopener">Download PDF</a>
+          <a class="article-pdf-link" href="pdfs/neural-networks.pdf" target="_blank" rel="noopener">Download PDF</a>
         </div>
       </div>
     </div>
@@ -745,154 +612,354 @@
 
     <div class="article-body">
 
+      <div class="article-draft-note">
+        <p><strong>Draft chapter.</strong> This is a pre-publication draft. The final version appears in the <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em>, available for purchase <a href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898" target="_blank" rel="noopener">on Amazon</a>.</p>
+      </div>
+
       <p class="lede">
-        There is a moment in the training of a deep neural network — somewhere around the tenth epoch, or the hundredth thousand gradient descent step — when something shifts. The loss curve, which has been falling in great lurching steps, begins to smooth. The model begins to generalize. It has, in some technical sense, learned.
+        Traditional computer programming requires an author to tell a machine exactly what to do. Machine learning flips this paradigm on its head, requiring the programmer to know only the correct output, not how that output was generated. This magic is made possible, in part, by representing problems as mathematical equations — networks that process input to arrive at correct output.
       </p>
 
       <p>
-        What has it actually learned? This is not a rhetorical question. The honest answer — the one researchers rarely say aloud at conferences — is that we do not entirely know. We can examine the weights, the activation patterns, the attention heads. We can probe the latent space. But the gap between the map and the territory, between the mathematical object and the phenomenon it captures, remains vast and, at its deepest level, uncharted.
+        Neural networks are one of two fundamental features in machine learning that permit automated learning — digitizing the ability to solve future, unknown problems given examples of currently known solutions. The neural network represents the "machine" of machine learning. Although neural networks represent, as a singular artificial neuron, intuitive mathematics, the layering and scale found in real-world neural networks, not to mention the relation to neuroscience, may make the concept unfamiliar at first blush.
+      </p>
+
+      <h2>Background</h2>
+
+      <p>
+        In the 1940s, Warren McCulloch, a neurophysiologist, and Walter Pitts, a logician, realized that one of the most advanced machines in existence — the human brain — relied on incredibly simple neurons that themselves could be represented as individual functions. A neuron receives input through a dendrite, processes that input in the nucleus, and produces an output sent along an axon; artificial neurons could be built to take input in the form of numbers, process the input via some type of algorithm, and pass the result of the neuron forward. Although this sounds complicated, it relies on simple mathematics.
       </p>
 
       <p>
-        This essay is an attempt to close some of that gap — not technically, but conceptually. To trace the history and mechanics of neural networks from their origins in the postwar dreams of cybernetics researchers to their current incarnation as the infrastructure of modernity: the technology that decides what you read, what job interview you get, whether your medical scan is flagged, and increasingly, whether a weapon is deployed.
+        The following mathematical formula may be considered a single neuron — a single neural network — just before the activation function is applied:
       </p>
 
       <div class="pull-quote">
-        <p>"The question is not whether machines can think. The question is whether we have any idea what thinking actually is — and whether our answer changes when a machine appears to do it."</p>
-        <cite>— Essay, Section II</cite>
+        <p>bias + (input<sub>x</sub> × weight₁) + (input<sub>y</sub> × weight₂) = intermediate output</p>
+        <cite>— The perceptron formula</cite>
       </div>
 
-      <h2>I. The Neuron That Was Never Really a Neuron</h2>
-
       <p>
-        The story begins not in a computer lab but in a psychiatrist's office. In 1943, Warren McCulloch, a neuropsychiatrist, and Walter Pitts, a largely self-taught mathematician, published a paper that proposed to describe the operation of the brain in the language of mathematical logic. Their "McCulloch-Pitts neuron" was a simplified model: a node that received binary inputs, summed them, and fired if the sum exceeded a threshold.
+        The intermediate output is then run through an activation function. Like a ReLU: if the intermediate output is less than zero, the final output is zero; if more than or equal to zero, the final output is one. In short, if each of these variables is set just right, the artificial neuron will produce correct output to a specific — and potentially useful — problem.
       </p>
 
       <p>
-        The biological metaphor was always approximate — real neurons are vastly more complex, with dendritic branching, temporal dynamics, and biochemical signaling that no simple function could capture. But the approximation was productive. It gave a generation of researchers a vocabulary. It suggested that thought might be computation, and that computation might be thought.
+        Interestingly, although the neuron just described is the brain behind some of the most complex artificial intelligence architectures today, the idea went dormant in the decades after its release. This dormancy remained despite Frank Rosenblatt's work on automatically updating the neuron's variables to receive more and more correct output. As a quote from 1958 portrays: "We are now about to witness the birth of such a machine — a machine capable of perceiving, recognizing and identifying its surroundings without any human training or control."
+      </p>
+
+      <h2>The Universal Approximation Theorem</h2>
+
+      <p>
+        What Professor Rosenblatt was referring to, and what was not practically possible until the recent artificial intelligence era, was the universal approximation theorem: any real-world problem which is able to be mathematically mapped as a continuous function can be solved with nearly-perfect accuracy by using a neural network. In other words, if a neural network is large enough, it can solve any real-world problem that may be mathematically described.
       </p>
 
       <p>
-        What followed was fifty years of oscillating enthusiasm and disillusionment. The perceptron, invented by Frank Rosenblatt in 1957, was met with breathless coverage: machines that learned from experience, that could recognize patterns, that might one day exceed human intelligence. Then Marvin Minsky and Seymour Papert published their devastating critique in 1969, demonstrating that single-layer perceptrons could not solve even the XOR problem. Funding dried up. The first AI winter descended.
+        Consider the AND gate. If the bias term is set to negative two and both weights to one, the network correctly produces the right output for all combinations of input — from (0,0) to (1,1). But what if instead of the AND gate, we wanted to represent the logical XOR gate? A single neuron does not work. What Rosenblatt was considering was the layering of one neuron with other neurons — which can, theoretically, answer problems like the XOR gate by combining a NAND neuron with an OR neuron. These layers are where the concept of a "deep" neural network comes from. The more layers, the deeper the network.
+      </p>
+
+      <div class="pull-quote">
+        <p>"Because of the universal approximation theorem, adding more and more layers allows a machine to drive vehicles, recognize speech, and talk — from lethal autonomous weapons systems to synthetic data to the autonomous vehicles we have on the roads today."</p>
+      </div>
+
+      <h2>Limitations</h2>
+
+      <h3>Input-output constraints</h3>
+
+      <p>
+        Neural networks operate by considering input and producing output. If a problem cannot be molded into that workflow — a mathematical input-to-output — then a neural network will be no good at solving the problem. Although there are an infinite number of colors that exist in the real world, computers can only represent colors in a finite and limited way, using a series of red, green, and blue pixel values. Although color itself is continuous in the natural world, computers must downgrade those colors in the digital world to operate on them — something which, in some ways, is unavoidably reductionist.
+      </p>
+
+      <h3>Inscrutability and traceability</h3>
+
+      <p>
+        It can sometimes be useful to think of machine learning models as inscrutable, given the difficulty of tracing particular inputs to particular outputs. However, that thinking elides the fact that these networks are surely accessible in some fashion. Neural networks do not produce truly random output. A neural network taught to recognize hand-written digits will not suddenly be able to distinguish between images of cats and dogs. Even "random" and untoward outcomes of advanced neural networks that have learned undesired behaviors — like Microsoft's Tay — have a traceable path.
+      </p>
+
+      <h3>Finite mathematical goals</h3>
+
+      <p>
+        Neural networks have finite and mathematical goals in mind. The AND gate from above was told exactly what type of output was correct: zero or one. The world, according to that neural network, consisted of no more than zeros and ones. The same is true of neural networks used to drive vehicles or generate art. The network is approximating a problem by rudimentarily turning that problem into a mathematical equation. This means that unless the mathematical problem incorporates values we as a society care about — like equality — the network will simply not consider them.
       </p>
 
       <div class="article-aside">
         <p>
-          <strong>Note:</strong> This essay is adapted from the author's research paper on machine learning architectures. The full academic version, including citations and formal methodology, is available as a PDF download above.
+          <strong>Note:</strong> Developers must think carefully about how neural networks are used and what is — or is not — considered as input and output by a neural network.
         </p>
       </div>
 
-      <h2>II. The Backpropagation Revolution</h2>
+      <h2>Conclusion</h2>
 
       <p>
-        The thaw came slowly. In 1986, David Rumelhart, Geoffrey Hinton, and Ronald Williams published a paper in Nature that demonstrated an efficient algorithm for training multi-layer networks — networks deep enough to learn hierarchical representations, to extract features from features. The algorithm was backpropagation, and it worked by propagating error signals backwards through the network, adjusting each weight by a small amount in the direction that reduced the error.
+        It was not until recently that researchers began layering neurons in such a massive fashion that the aims of McCulloch, Pitts, and Rosenblatt came to fruition. These networks are beginning to match or outperform humans at a variety of tasks, though those breakthroughs are coming from scale rather than invention. Network types have been showing improvements in recent years: convolutional neural networks became popular for vision, generative adversarial networks started a generative trend, and diffusion models have more recently taken hold. And yet, the core of these networks, so far, has remained the groundwork laid by McCulloch, Pitts, and Rosenblatt.
       </p>
 
       <p>
-        The mathematics was elegant but the compute was not there. Training even a modest multi-layer network on 1980s hardware required patience measured in days or weeks. And the data was not there either — the vast labeled datasets that neural networks needed to generalize were expensive to produce and limited in scope.
+        Systems that rely on "more compute" to achieve better performance may get an architectural update in the future — one that could unlock performance boosts that seem limited when scale plateaus. For the moment, however, neural networks can still be abstracted, in some sense, to the perceptron from the 1950s, meaning that the understanding laid out above will continue to capture the essence of artificial intelligence for the foreseeable future.
       </p>
 
-      <p>
-        For two more decades, the field languished. Support vector machines, decision trees, and other classical methods dominated machine learning research. Neural networks were a research curiosity, not a practical tool. Then, in a few years in the early 2010s, everything changed at once.
-      </p>
-
-      <div class="pull-quote">
-        <p>"AlexNet did not just win a competition. It ended an era of hand-crafted features and began the era of learned representations — representations no human had designed, and that no human can fully interpret."</p>
-      </div>
-
-      <h2>III. Deep Learning and the ImageNet Moment</h2>
-
-      <p>
-        The ImageNet Large Scale Visual Recognition Challenge ran annually from 2010. In 2012, a team from the University of Toronto — Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton — entered a convolutional neural network they called AlexNet. It reduced the top-5 error rate from 26% to 15.3%, a margin so large that the second-place team, using conventional computer vision techniques, did not even come close.
-      </p>
-
-      <p>
-        AlexNet worked because three things had finally converged: sufficient labeled training data (the ImageNet dataset contained more than a million labeled images), sufficient compute (Krizhevsky parallelized the training across two GPUs), and an architectural insight — using rectified linear units instead of sigmoid activations, which allowed gradients to propagate through deep networks without vanishing.
-      </p>
-
-      <p>
-        The field's response was immediate and total. Within a year, virtually every competitive computer vision system was a deep neural network. Within five years, deep learning had spread to natural language processing, speech recognition, protein structure prediction, game-playing, and drug discovery. The question was no longer whether deep learning worked but whether there was anything it could not do.
-      </p>
-
-      <div class="section-ornament">· · ·</div>
-
-      <h3>What the weights actually encode</h3>
-
-      <p>
-        Inside a trained neural network, the learned parameters — the weights — encode something like knowledge, though not in any form that maps onto human categories of understanding. In the early layers of a convolutional network trained on images, the weights encode edges and textures. In later layers, they encode shapes, then object parts, then objects themselves. This hierarchical feature extraction was not programmed. It emerged from the training process.
-      </p>
-
-      <p>
-        This emergence is both the power and the mystery of deep learning. No one told the network that edges were a useful intermediate representation for identifying objects. The network discovered this itself — because edges are, in fact, a useful intermediate representation, and the training objective (minimize classification error on labeled examples) happened to reward encoding them.
-      </p>
-
-      <p>
-        The network optimized for a proxy (prediction accuracy on labeled training data) and discovered something real. This is remarkable. It suggests that, given enough data and a suitable objective, gradient descent will find representations that reflect the actual structure of the world — or at least, of the world as the training data samples it.
-      </p>
-
-      <h2>IV. The Limits of What We Can See Inside</h2>
-
-      <p>
-        The field of interpretability research exists because this opacity is not merely philosophically troubling — it is practically dangerous. A neural network deployed in a medical diagnosis context, or a criminal sentencing context, or a targeting context, may have learned to rely on features that are spurious, discriminatory, or fragile. Without the ability to inspect what the model has actually learned, we have no reliable way to know.
-      </p>
-
-      <p>
-        Interpretability researchers have developed a suite of techniques: saliency maps that highlight which input pixels most influenced a prediction; probing classifiers that test whether specific concepts are linearly encoded in the network's activations; activation patching that traces causal pathways through the network's computation graph. These tools illuminate real structure. They also reveal how much remains dark.
-      </p>
-
-      <p>
-        A network might learn a feature that is perfectly correlated with the correct label in the training data and completely uncorrelated with it in the real world. A skin cancer classifier trained on images from hospitals where cancerous lesions were often photographed with a ruler might learn to associate the presence of a ruler with cancer. A recidivism prediction tool might learn to proxy race through zip code. The model performs. The model is wrong, in ways that matter.
-      </p>
-
-      <div class="pull-quote">
-        <p>"The gap between what a model optimizes for and what we actually want from it is not a technical problem. It is a moral one. And closing it requires more than better architectures."</p>
-      </div>
-
-      <h2>V. Toward Understanding</h2>
-
-      <p>
-        None of this should lead us to conclude that neural networks are useless, or that their opacity is permanent. The history of science is a history of making sense of what was initially black-box: thermodynamics before statistical mechanics, inheritance before molecular biology, neural computation before theoretical neuroscience. Understanding follows deployment; it rarely precedes it.
-      </p>
-
-      <p>
-        What it should lead us to is a more calibrated posture toward these systems — one that neither dismisses them as parlor tricks nor treats their outputs as oracular. Neural networks are extraordinarily powerful function approximators. They can learn to compress remarkable regularities about the world into weighted graphs. They cannot, yet, explain their reasoning in terms we can verify. They cannot, yet, robustly generalize beyond their training distribution. They cannot, yet, be trusted blindly.
-      </p>
-
-      <p>
-        The architecture of thought, as artificial systems currently implement it, is impressive and partial. The question of whether it can become complete — whether learned representations can ever be transparent, verified, and reliably aligned with human values — is not settled. It is, arguably, the most important open question in technology today.
-      </p>
-
-      <p>
-        The answer will determine what kind of century we are entering.
-      </p>
-
-    </div><!-- /article-body -->
+    </div>
 
     <hr class="section-rule" style="margin-top: 0;" />
-
     <footer style="padding: 3rem 2.5rem;">
-      <span class="footer-wordmark">Signal</span>
+      <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
       <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
     </footer>
 
   </div><!-- /article-neural -->
 
 
+  <!-- ═══════════════ ARTICLE: WARFARE ═══════════════ -->
+  <div id="article-warfare">
+
+    <header class="masthead">
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">Nathan Reitinger</a>
+      <nav>
+        <ul class="masthead-nav">
+          <li><a href="#" onclick="showHome(); return false;">← All Chapters</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <button class="back-btn" onclick="showHome()">← Back to all chapters</button>
+
+    <div class="article-header fade-in">
+      <div>
+        <p class="article-kicker">Warfare &nbsp;·&nbsp; Chapter 107</p>
+        <h1 class="article-headline">Warfare</h1>
+      </div>
+      <div class="article-meta-block">
+        <p class="article-standfirst">
+          Lethal autonomous weapons systems are weapons that, after being turned on, select and engage targets without human intervention. Accountability gaps, alignment with "just" war practices, and the moral weight of machines taking human lives are just a few of the headline issues in this area.
+        </p>
+        <div class="article-byline-row">
+          <div>
+            <p class="article-author">By Nathan Reitinger</p>
+            <p class="article-date">Encyclopedia of Artificial Intelligence and Law &nbsp;·&nbsp; Draft</p>
+          </div>
+          <a class="article-pdf-link" href="pdfs/warfare.pdf" target="_blank" rel="noopener">Download PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-rule" />
+
+    <div class="article-body">
+
+      <div class="article-draft-note">
+        <p><strong>Draft chapter.</strong> This is a pre-publication draft. The final version appears in the <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em>, available for purchase <a href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898" target="_blank" rel="noopener">on Amazon</a>.</p>
+      </div>
+
+      <p class="lede">
+        What happens when artificial intelligence is given the power to make life-and-death decisions? Is it ever desirable for a machine to decide if a human lives or dies — and if so, what types of restrictions should be placed around weapons capable of making these decisions?
+      </p>
+
+      <p>
+        In the international law context, these types of weapons are known as "lethal autonomous weapons systems" — weapons that, after being turned on, select and engage targets without human intervention. These weapons represent one of the many difficult areas that have been upended by artificial intelligence. Accountability gaps, alignment with "just" war practices, and moral or ethical qualms with machines taking human lives are just a few of the headline issues in this area.
+      </p>
+
+      <h2>Technical</h2>
+
+      <p>
+        In the autonomous weapons hierarchy, LAWS sit second from the top. At the bottom are in-the-loop systems — those that require a human to "complete the loop," weapons that do not work without human engagement, like a single-action trigger pistol. Next up are on-the-loop systems, where the system may operate in a semi-autonomous mode, but a human remains a crucial component and is always able to intervene. Finally, out-of-the-loop systems are those that, once activated, select and engage targets without human intervention or control — these are LAWS.
+      </p>
+
+      <p>
+        It is worth noting that even the definition of LAWS has seen a large amount of contention. The mostly accepted definition is, in fact, narrow: LAWS refer specifically to situations where a weapons system both "selects" and "engages" targets. A sentry gun, once activated, fits this bill. Practical examples include the United States Navy's Phalanx system and Israel's Iron Dome — each may allow for human control, but a human's ability to monitor and react pales in comparison to the machine.
+      </p>
+
+      <div class="pull-quote">
+        <p>"They don't get hungry. They're not afraid. They don't forget their orders. They don't care if the guy next to them has just been shot. Will they do a better job than humans? Yes."</p>
+        <cite>— Gordon Johnson, Joint Forces Command, Pentagon, 2005</cite>
+      </div>
+
+      <p>
+        Some of the confusion in demarcating first- to second- to third-loop systems may come from thinking that current-day technology is more capable than it really is. If there existed a machine that not only selects and engages targets on its own but also possesses something akin to moral agency — debating the merits of actions with logical reasoning or seeming to express free will — then the definition of "fully" autonomous seems like it should take on a new meaning. These fourth-loop systems do not yet exist. Today, only tools wielded by operators exist, even if the orders given to these tools have changed from a required physical gesture to turning on a device that comes with selection and engagement functionality.
+      </p>
+
+      <h3>The civilian development connection</h3>
+
+      <p>
+        A final technical consideration relates to the development of LAWS happening in parallel with consumer products. For a weapons system to "select" and "engage" a target, it must have the ability to both locate that target and make a reasoned decision on whether to engage. Autonomous vehicles must also see the road and make decisions based on that vision. Two points follow: the underlying technology — computer vision — in each use case is very similar, meaning consumer-focused companies improving AI products are, in some ways, pushing the cutting edge for military developments as well. And making long-lasting regulatory decisions about a technology in a rapid state of development is extraordinarily difficult.
+      </p>
+
+      <h2>Legal</h2>
+
+      <p>
+        The use of LAWS on the battlefield must comply with international humanitarian law (IHL) and international criminal law. IHL requires that all legal weapons systems maintain principles including necessity, distinction, and proportionality. In general terms, the machine could not be used unless it were able to understand context in terms of the appropriate use of force and distinguish between appropriate and inappropriate targets — combatants versus civilians.
+      </p>
+
+      <p>
+        Many countries were quick to support a preemptive ban on LAWS prior to their use on the battlefield. Missing among proponents of a ban, however, were countries like Israel, Russia, the United Kingdom, the United States, and South Korea. That voluntary preemptive bans have not reached unanimity does not mean LAWS are always legal — it means the legal framework remains genuinely contested.
+      </p>
+
+      <div class="pull-quote">
+        <p>"The liability-gap argument is most effective when considering that machines may make unpredictable or undesired actions, and those actions may seem unfairly pinned on an original decision-maker."</p>
+      </div>
+
+      <p>
+        There are concerns over the decisions made by LAWS given the potential for an accountability gap that could incentivize lawlessness — casting doubt on any type of permitted use. The machine's actions will lack a mens rea, thereby obviating the ability of criminal law to incentivize responsible use. At least in part, these concerns may be tempered when considering that only third-loop systems exist: a human operator will have nevertheless made a decision to use the autonomous weapons system in the first place.
+      </p>
+
+      <div class="article-aside">
+        <p>
+          Research suggests that up to 45% of soldiers and 60% of Marines would not report a fellow soldier who injured or killed an innocent combatant. LAWS, by contrast, may be more transparent about decisions than human soldiers — though this apparent advantage opens its own set of questions about accountability.
+        </p>
+      </div>
+
+      <h2>Conclusion</h2>
+
+      <p>
+        Automated weapons systems are currently and will continue to be found on the battlefield. These systems are increasingly capable of replacing human soldiers, could potentially change the way war operates on a global scale, and present complex ethical, moral, and legal issues that are difficult to reach global consensus on. Countries around the world are continuing to support a ban on LAWS, but holdouts remain — adding support for the regulation of LAWS in a way that creates reasonable boundaries on use rather than preemptive bans. Discussions over accountability and compliance with IHL are ongoing, and will likely continue to be so due to rapid innovation, political tensions, and issues over international harmonization.
+      </p>
+
+    </div>
+
+    <hr class="section-rule" style="margin-top: 0;" />
+    <footer style="padding: 3rem 2.5rem;">
+      <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
+      <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
+    </footer>
+
+  </div><!-- /article-warfare -->
+
+
+  <!-- ═══════════════ ARTICLE: SYNTHETIC DATA ═══════════════ -->
+  <div id="article-synthetic">
+
+    <header class="masthead">
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">Nathan Reitinger</a>
+      <nav>
+        <ul class="masthead-nav">
+          <li><a href="#" onclick="showHome(); return false;">← All Chapters</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <button class="back-btn" onclick="showHome()">← Back to all chapters</button>
+
+    <div class="article-header fade-in">
+      <div>
+        <p class="article-kicker">Synthetic Data &nbsp;·&nbsp; Chapter 100</p>
+        <h1 class="article-headline">Synthetic Data</h1>
+      </div>
+      <div class="article-meta-block">
+        <p class="article-standfirst">
+          At its most general, synthetic data is data that has been generated using a computer — a potential solution for problems of scale, privacy, sensitivity, and legality. It may be no silver bullet. But it is the direction the field is moving.
+        </p>
+        <div class="article-byline-row">
+          <div>
+            <p class="article-author">By Nathan Reitinger</p>
+            <p class="article-date">Encyclopedia of Artificial Intelligence and Law &nbsp;·&nbsp; Draft</p>
+          </div>
+          <a class="article-pdf-link" href="pdfs/synthetic-data.pdf" target="_blank" rel="noopener">Download PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-rule" />
+
+    <div class="article-body">
+
+      <div class="article-draft-note">
+        <p><strong>Draft chapter.</strong> This is a pre-publication draft. The final version appears in the <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em>, available for purchase <a href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898" target="_blank" rel="noopener">on Amazon</a>.</p>
+      </div>
+
+      <p class="lede">
+        Artificial intelligence's current era predominantly rests on scale. Massive amounts of data, large models, and cutting-edge hardware have given rise to AI performance that matches or outpaces human expertise on a variety of tasks. But data, in machine learning, is not created equal.
+      </p>
+
+      <p>
+        Some data, like a social security number, has privacy or sensitivity implications. Other data, like creative works of expression, has legal implications such as copyright. And still other data is simply low quality — not enough of it to be useful, or too unique to draw patterns from. Moreover, there exists a reasonable question of whether scale itself will plateau: Is there enough data in the world to maintain the appetite of the massive machine learning models we are creating?
+      </p>
+
+      <p>
+        What all of this pushes toward is synthetic data — a potential solution for a variety of data problems. Generative AI is a general-purpose tool with many applications, though image generators and deepfakes often take the limelight. Of particular interest to privacy scholars, however, generation can also be pointed at tabular data found in a dataset.
+      </p>
+
+      <h2>Terminology</h2>
+
+      <p>
+        Synthetic data is a term with at least two meanings found in the literature, and the difference is one of process: how was the synthetic data created? The original concept refers to the creation of a "dummy" dataset by cloning a "real" dataset in terms of the original dataset's statistical properties. For example, creating a synthetic dataset of an array of numbers — replicating its density and randomness — could produce a replica dataset that has similar statistical properties and may be used in place of the original.
+      </p>
+
+      <p>
+        The newer meaning likewise refers to the creation of a dummy dataset based on a real dataset, but the process is through generative artificial intelligence rather than careful assessment. Machine learning can figure out on its own what statistical properties to focus on — all the developer needs to do is train a model on real data with the goal of producing similarly-looking replica data.
+      </p>
+
+      <div class="pull-quote">
+        <p>"Synthetic data replaces original data and thereby permits useful data analysis without, potentially, encumbering the sensitivity of the original, raw data."</p>
+      </div>
+
+      <h2>Privacy</h2>
+
+      <p>
+        The idea that synthetic data can be used in machine learning is appealing. What could be the downside of removing the barriers of low-quality data by replacing it with new, high-quality data? This motivation and appearance-based perspective, however, elides the potential privacy concerns that synthetic data encumbers.
+      </p>
+
+      <p>
+        Similar to the failures of anonymization experienced by the AOL search-query debacle and the Netflix Prize affair, synthetic data is vulnerable to unverified claims of anonymity. In those two privacy failures, AOL and Netflix made efforts to anonymize their datasets before releasing them into the wild, using techniques like generalization (turning zip codes into country names) or suppression (replacing the last four digits of a social security number with asterisks). These techniques make datasets appear anonymous. But given the large amount of data existing beyond siloed datasets, researchers and journalists in both cases were able to patch up the holes in sanitized data and reidentify individuals.
+      </p>
+
+      <div class="article-aside">
+        <p>
+          Professor Sweeney demonstrated these vulnerabilities as early as 1997, reidentifying hospital records of a Massachusetts governor after the records had been "anonymized" — illustrating that the problem predates modern machine learning by decades.
+        </p>
+      </div>
+
+      <p>
+        Synthetic data presents largely unverified claims of anonymity, though it does have notable advantages: it is generative rather than subtractive, using noise to replace data rather than removing it entirely. Computer science researchers looking into synthetic data's privacy properties have identified "highly variable privacy gain" and "unpredictable utility loss." On top of this, there is a legal concern that "vanilla" synthetic data — generative data that did not undergo additional privacy-preserving processing like differential privacy — will be accepted as sufficient sanitization by certain data-protective statutes without thorough analysis of the risks.
+      </p>
+
+      <h2>The Privacy–Utility Tradeoff</h2>
+
+      <p>
+        It is undeniable that some amount of synthetic data is useful to artificial intelligence. It is nearly unanimous practice to use a simple type of synthetic data via single-image data transformations — flipping an image horizontally or zooming in — when training image generators. Moreover, most production models used by large companies are trained on more advanced synthetic data to balance training datasets. But when improperly used, synthetic data makes promises it cannot keep.
+      </p>
+
+      <div class="pull-quote">
+        <p>"A perfectly private dataset has no data in it. A perfectly useful dataset does not protect privacy in any way."</p>
+      </div>
+
+      <p>
+        Researchers are starting to look into more formal guarantees of privacy using tools like differential privacy, which "allows one to learn the statistics of a group without also learning the statistics of the individuals making up the group." Adding differential privacy to a synthetic data pipeline seeks to offer a best-of-both-worlds approach — privacy plus utility — but inherits issues with a necessary amount of data loss. Whenever non-real data is added to a dataset, a tradeoff occurs between privacy and utility.
+      </p>
+
+      <h2>Conclusion</h2>
+
+      <p>
+        The aim of future work is to better balance the privacy–utility tradeoff using synthetic data in a way that allows the data to be useful, but private. That balance has not yet been struck. What is clear is that as machine learning models grow and the appetite for training data outpaces what the world can organically supply, synthetic data will move from an interesting research curiosity to a foundational infrastructure of the field — bringing its unresolved questions with it.
+      </p>
+
+    </div>
+
+    <hr class="section-rule" style="margin-top: 0;" />
+    <footer style="padding: 3rem 2.5rem;">
+      <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
+      <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
+    </footer>
+
+  </div><!-- /article-synthetic -->
+
+
   <script>
-    function showArticle() {
+    function showArticle(id) {
       document.getElementById('home').style.display = 'none';
-      document.getElementById('article-neural').style.display = 'block';
+      ['article-neural','article-warfare','article-synthetic'].forEach(a => {
+        document.getElementById(a).style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
       window.scrollTo(0, 0);
       triggerFadeIns();
     }
 
     function showHome() {
-      document.getElementById('article-neural').style.display = 'none';
+      ['article-neural','article-warfare','article-synthetic'].forEach(a => {
+        document.getElementById(a).style.display = 'none';
+      });
       document.getElementById('home').style.display = 'block';
       window.scrollTo(0, 0);
     }
 
-    // Scroll-triggered fade-ins
     function triggerFadeIns() {
       const els = document.querySelectorAll('.fade-in');
       const obs = new IntersectionObserver((entries) => {
@@ -903,7 +970,7 @@
           }
         });
       }, { threshold: 0.08 });
-      els.forEach(el => obs.observe(el));
+      els.forEach(el => { el.classList.remove('visible'); obs.observe(el); });
     }
 
     document.addEventListener('DOMContentLoaded', triggerFadeIns);
