@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIGNAL — Intelligence at the Edge of Now</title>
+  <meta name="description" content="Long-form essays on AI, warfare, neural networks, and synthetic data. A literary intelligence briefing for the thinking reader." />
+
+  <!-- SEO / Open Graph -->
+  <meta property="og:title" content="SIGNAL — Intelligence at the Edge of Now" />
+  <meta property="og:description" content="Long-form essays on AI, warfare, neural networks, and synthetic data." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google indexing hint for PDFs (linked inline) -->
+  <link rel="canonical" href="https://yourusername.github.io/" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & ROOT ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #e8e2d9;
+      --ink-muted: #8a8278;
+      --ink-dim:   #4a4640;
+      --paper:     #0d0c0b;
+      --paper-2:   #141311;
+      --paper-3:   #1a1916;
+      --rule:      rgba(232, 226, 217, 0.1);
+      --rule-med:  rgba(232, 226, 217, 0.18);
+      --accent:    #c9a96e;
+      --accent-2:  #8fb8a0;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Instrument Sans', system-ui, sans-serif;
+      --mono:  'JetBrains Mono', monospace;
+
+      --max: 760px;
+      --wide: 1100px;
+    }
+
+    html { font-size: 18px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── MASTHEAD ─────────────────────────────────────────────── */
+    .masthead {
+      border-bottom: 1px solid var(--rule-med);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      background: rgba(13, 12, 11, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .masthead-wordmark {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .masthead-nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .masthead-nav a {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .masthead-nav a:hover { color: var(--ink); }
+
+    /* ─── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      padding: 7rem 2.5rem 5rem;
+      max-width: var(--wide);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+    }
+
+    .hero-issue {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(3.2rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-right {
+      padding-bottom: 0.5rem;
+    }
+
+    .hero-lede {
+      font-size: 1.3rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ink-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-rule {
+      width: 3rem;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .hero-byline {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+
+    /* ─── DIVIDER RULE ─────────────────────────────────────────── */
+    .section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0 2.5rem;
+    }
+
+    /* ─── SECTION LABELS ───────────────────────────────────────── */
+    .section-header {
+      padding: 3.5rem 2.5rem 0;
+      max-width: var(--wide);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ─── ARTICLE CARDS GRID ───────────────────────────────────── */
+    .articles-grid {
+      padding: 2.5rem 2.5rem 6rem;
+      max-width: var(--wide);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 0;
+    }
+
+    /* Featured (left) card */
+    .card-featured {
+      padding: 3rem 3rem 3rem 0;
+      border-right: 1px solid var(--rule);
+    }
+
+    /* Secondary cards (right column) */
+    .cards-secondary {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-secondary {
+      padding: 2rem 0 2rem 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .card-secondary:last-child {
+      border-bottom: none;
+    }
+
+    /* Shared card elements */
+    .card-topic {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 0.8rem;
+    }
+
+    .card-featured .card-topic { color: var(--accent); }
+
+    .card-number {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--ink-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 2.4rem;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.25rem;
+      color: var(--ink);
+    }
+
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .card-title a:hover { color: var(--accent); }
+
+    .card-secondary .card-title {
+      font-size: 1.5rem;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-excerpt {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-secondary .card-excerpt {
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .card-cta {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+
+    .card-cta:hover { opacity: 0.7; }
+
+    .card-pdf {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .card-pdf:hover { color: var(--ink-muted); }
+
+    /* ─── ARTICLE PAGE ─────────────────────────────────────────── */
+    #article-neural { display: none; }
+
+    .article-header {
+      padding: 6rem 2.5rem 4rem;
+      max-width: var(--wide);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .article-kicker {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .article-headline {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 0;
+    }
+
+    .article-meta-block {
+      padding-top: 1rem;
+    }
+
+    .article-standfirst {
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--ink-muted);
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .article-byline-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-top: 1px solid var(--rule-med);
+      padding-top: 1.25rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .article-author {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .article-date {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-dim);
+    }
+
+    .article-pdf-link {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .article-pdf-link:hover {
+      background: var(--accent);
+      color: var(--paper);
+    }
+
+    /* ─── ARTICLE BODY ─────────────────────────────────────────── */
+    .article-body {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2.5rem 8rem;
+    }
+
+    /* Drop cap */
+    .article-body > p:first-of-type::first-letter {
+      float: left;
+      font-size: 5.5rem;
+      font-weight: 300;
+      line-height: 0.78;
+      margin-right: 0.08em;
+      margin-top: 0.1em;
+      color: var(--accent);
+      font-family: var(--serif);
+    }
+
+    .article-body p {
+      font-size: 1.08rem;
+      line-height: 1.82;
+      margin-bottom: 1.5em;
+      color: var(--ink);
+    }
+
+    .article-body h2 {
+      font-size: 1.9rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 3.5rem 0 1.25rem;
+      line-height: 1.2;
+    }
+
+    .article-body h3 {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 3rem 0 1rem;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 2px solid var(--accent);
+      padding: 1rem 0 1rem 2rem;
+      margin: 3rem 0 3rem -0.5rem;
+    }
+
+    .pull-quote p {
+      font-size: 1.55rem !important;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.45 !important;
+      color: var(--ink) !important;
+      margin-bottom: 0.5rem !important;
+    }
+
+    .pull-quote cite {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      font-style: normal;
+    }
+
+    /* Lede paragraph */
+    .lede {
+      font-size: 1.25rem !important;
+      font-weight: 300;
+      line-height: 1.7 !important;
+      color: var(--ink-muted) !important;
+    }
+
+    /* Footnote / aside */
+    .article-aside {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 1.5rem 0;
+      margin: 3rem 0;
+    }
+
+    .article-aside p {
+      font-family: var(--sans);
+      font-size: 0.82rem !important;
+      line-height: 1.6 !important;
+      color: var(--ink-dim) !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Section ornament */
+    .section-ornament {
+      text-align: center;
+      color: var(--ink-dim);
+      font-size: 1.5rem;
+      margin: 3rem 0;
+      letter-spacing: 0.5em;
+    }
+
+    /* ─── BACK BUTTON ──────────────────────────────────────────── */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 2rem 2.5rem;
+      transition: color 0.2s;
+    }
+
+    .back-btn:hover { color: var(--ink); }
+
+    /* ─── COMING SOON CARD ─────────────────────────────────────── */
+    .coming-soon-badge {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      border: 1px solid var(--rule);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 3rem 2.5rem;
+      max-width: var(--wide);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-wordmark {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      color: var(--ink-dim);
+    }
+
+    /* ─── SCROLL FADE-IN ───────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero, .articles-grid, .article-header {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .card-featured {
+        padding: 2rem 0;
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .card-secondary {
+        padding: 2rem 0;
+      }
+
+      .hero { padding: 4rem 1.5rem 3rem; }
+
+      .masthead { padding: 1.5rem; }
+
+      .masthead-nav { display: none; }
+
+      .section-header, .articles-grid, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+      .article-header { padding: 4rem 1.5rem 2rem; }
+
+      .article-body { padding: 0 1.5rem 5rem; }
+
+      .card-title { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!--  HOME PAGE                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div id="home">
+
+    <!-- Masthead -->
+    <header class="masthead">
+      <a class="masthead-wordmark" href="#">Signal</a>
+      <nav>
+        <ul class="masthead-nav">
+          <li><a href="#articles">Essays</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero fade-in">
+      <div class="hero-left">
+        <p class="hero-issue">Vol. I &nbsp;·&nbsp; Intelligence &amp; Machine</p>
+        <h1 class="hero-title">At the <em>edge</em><br>of now</h1>
+      </div>
+      <div class="hero-right">
+        <p class="hero-lede">
+          Three long-form essays on the technologies reshaping conflict, cognition, and the nature of knowledge itself. Written for the reader who wants to understand, not just consume.
+        </p>
+        <div class="hero-rule"></div>
+        <p class="hero-byline">Essays &nbsp;·&nbsp; Research &nbsp;·&nbsp; Primary Sources</p>
+      </div>
+    </section>
+
+    <hr class="section-rule" />
+
+    <!-- Section label -->
+    <div class="section-header" id="articles">
+      <p class="section-label">In this issue</p>
+    </div>
+
+    <!-- Article Grid -->
+    <div class="articles-grid">
+
+      <!-- Featured: Neural Networks -->
+      <article class="card-featured fade-in">
+        <p class="card-topic">Neural Networks</p>
+        <h2 class="card-title">
+          <a href="#" onclick="showArticle(); return false;">
+            The Architecture of Thought: How Neural Networks Learn to See the World
+          </a>
+        </h2>
+        <p class="card-excerpt">
+          Beneath the surface of every modern AI system lies a lattice of weighted connections — a synthetic cortex that, given enough data and time, teaches itself to recognize patterns no human ever explicitly programmed. What exactly is happening inside these networks? And why does it matter for everything from battlefield intelligence to the future of human cognition?
+        </p>
+        <div class="card-meta">
+          <a class="card-cta" href="#" onclick="showArticle(); return false;">Read Essay →</a>
+          <a class="card-pdf" href="neural-networks.pdf" target="_blank" rel="noopener">↓ PDF</a>
+        </div>
+      </article>
+
+      <!-- Secondary cards -->
+      <div class="cards-secondary">
+
+        <!-- Warfare -->
+        <article class="card-secondary fade-in">
+          <p class="card-number">02</p>
+          <p class="card-topic">Warfare</p>
+          <h2 class="card-title">
+            <a href="#">Autonomous Kill Chains: AI Decision-Making on the Lethal Edge</a>
+          </h2>
+          <p class="card-excerpt">
+            As militaries race to integrate machine intelligence into targeting and command, the question is no longer whether AI will decide who lives and who dies — but who is accountable when it does.
+          </p>
+          <div class="card-meta">
+            <span class="coming-soon-badge">Coming Soon</span>
+            <a class="card-pdf" href="warfare.pdf" target="_blank" rel="noopener">↓ PDF</a>
+          </div>
+        </article>
+
+        <!-- Synthetic Data -->
+        <article class="card-secondary fade-in">
+          <p class="card-number">03</p>
+          <p class="card-topic">Synthetic Data</p>
+          <h2 class="card-title">
+            <a href="#">The Invented World: How Synthetic Data Is Feeding the Machine</a>
+          </h2>
+          <p class="card-excerpt">
+            Training AI on AI-generated data was once considered a dead end — a hall of mirrors leading to collapse. Now it may be the only path forward. The epistemology of a training set matters more than anyone expected.
+          </p>
+          <div class="card-meta">
+            <span class="coming-soon-badge">Coming Soon</span>
+            <a class="card-pdf" href="synthetic-data.pdf" target="_blank" rel="noopener">↓ PDF</a>
+          </div>
+        </article>
+
+      </div>
+    </div><!-- /articles-grid -->
+
+    <hr class="section-rule" />
+
+    <footer id="about">
+      <span class="footer-wordmark">Signal</span>
+      <span class="footer-copy">Essays on intelligence, artificial and otherwise. All rights reserved.</span>
+    </footer>
+
+  </div><!-- /home -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!--  ARTICLE: NEURAL NETWORKS                                   -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div id="article-neural">
+
+    <header class="masthead">
+      <a class="masthead-wordmark" href="#">Signal</a>
+      <nav>
+        <ul class="masthead-nav">
+          <li><a href="#" onclick="showHome(); return false;">← All Essays</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <button class="back-btn" onclick="showHome()">← Back to all essays</button>
+
+    <div class="article-header fade-in">
+      <div>
+        <p class="article-kicker">Neural Networks &nbsp;·&nbsp; Essay No. 01</p>
+        <h1 class="article-headline">The Architecture of Thought</h1>
+      </div>
+      <div class="article-meta-block">
+        <p class="article-standfirst">
+          How a mathematical metaphor for the brain became the most consequential technology of the century — and what the inside of a neural network actually reveals about the nature of intelligence itself.
+        </p>
+        <div class="article-byline-row">
+          <div>
+            <p class="article-author">By [Your Name]</p>
+            <p class="article-date">2024 &nbsp;·&nbsp; 12 min read</p>
+          </div>
+          <a class="article-pdf-link" href="neural-networks.pdf" target="_blank" rel="noopener">Download PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-rule" />
+
+    <div class="article-body">
+
+      <p class="lede">
+        There is a moment in the training of a deep neural network — somewhere around the tenth epoch, or the hundredth thousand gradient descent step — when something shifts. The loss curve, which has been falling in great lurching steps, begins to smooth. The model begins to generalize. It has, in some technical sense, learned.
+      </p>
+
+      <p>
+        What has it actually learned? This is not a rhetorical question. The honest answer — the one researchers rarely say aloud at conferences — is that we do not entirely know. We can examine the weights, the activation patterns, the attention heads. We can probe the latent space. But the gap between the map and the territory, between the mathematical object and the phenomenon it captures, remains vast and, at its deepest level, uncharted.
+      </p>
+
+      <p>
+        This essay is an attempt to close some of that gap — not technically, but conceptually. To trace the history and mechanics of neural networks from their origins in the postwar dreams of cybernetics researchers to their current incarnation as the infrastructure of modernity: the technology that decides what you read, what job interview you get, whether your medical scan is flagged, and increasingly, whether a weapon is deployed.
+      </p>
+
+      <div class="pull-quote">
+        <p>"The question is not whether machines can think. The question is whether we have any idea what thinking actually is — and whether our answer changes when a machine appears to do it."</p>
+        <cite>— Essay, Section II</cite>
+      </div>
+
+      <h2>I. The Neuron That Was Never Really a Neuron</h2>
+
+      <p>
+        The story begins not in a computer lab but in a psychiatrist's office. In 1943, Warren McCulloch, a neuropsychiatrist, and Walter Pitts, a largely self-taught mathematician, published a paper that proposed to describe the operation of the brain in the language of mathematical logic. Their "McCulloch-Pitts neuron" was a simplified model: a node that received binary inputs, summed them, and fired if the sum exceeded a threshold.
+      </p>
+
+      <p>
+        The biological metaphor was always approximate — real neurons are vastly more complex, with dendritic branching, temporal dynamics, and biochemical signaling that no simple function could capture. But the approximation was productive. It gave a generation of researchers a vocabulary. It suggested that thought might be computation, and that computation might be thought.
+      </p>
+
+      <p>
+        What followed was fifty years of oscillating enthusiasm and disillusionment. The perceptron, invented by Frank Rosenblatt in 1957, was met with breathless coverage: machines that learned from experience, that could recognize patterns, that might one day exceed human intelligence. Then Marvin Minsky and Seymour Papert published their devastating critique in 1969, demonstrating that single-layer perceptrons could not solve even the XOR problem. Funding dried up. The first AI winter descended.
+      </p>
+
+      <div class="article-aside">
+        <p>
+          <strong>Note:</strong> This essay is adapted from the author's research paper on machine learning architectures. The full academic version, including citations and formal methodology, is available as a PDF download above.
+        </p>
+      </div>
+
+      <h2>II. The Backpropagation Revolution</h2>
+
+      <p>
+        The thaw came slowly. In 1986, David Rumelhart, Geoffrey Hinton, and Ronald Williams published a paper in Nature that demonstrated an efficient algorithm for training multi-layer networks — networks deep enough to learn hierarchical representations, to extract features from features. The algorithm was backpropagation, and it worked by propagating error signals backwards through the network, adjusting each weight by a small amount in the direction that reduced the error.
+      </p>
+
+      <p>
+        The mathematics was elegant but the compute was not there. Training even a modest multi-layer network on 1980s hardware required patience measured in days or weeks. And the data was not there either — the vast labeled datasets that neural networks needed to generalize were expensive to produce and limited in scope.
+      </p>
+
+      <p>
+        For two more decades, the field languished. Support vector machines, decision trees, and other classical methods dominated machine learning research. Neural networks were a research curiosity, not a practical tool. Then, in a few years in the early 2010s, everything changed at once.
+      </p>
+
+      <div class="pull-quote">
+        <p>"AlexNet did not just win a competition. It ended an era of hand-crafted features and began the era of learned representations — representations no human had designed, and that no human can fully interpret."</p>
+      </div>
+
+      <h2>III. Deep Learning and the ImageNet Moment</h2>
+
+      <p>
+        The ImageNet Large Scale Visual Recognition Challenge ran annually from 2010. In 2012, a team from the University of Toronto — Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton — entered a convolutional neural network they called AlexNet. It reduced the top-5 error rate from 26% to 15.3%, a margin so large that the second-place team, using conventional computer vision techniques, did not even come close.
+      </p>
+
+      <p>
+        AlexNet worked because three things had finally converged: sufficient labeled training data (the ImageNet dataset contained more than a million labeled images), sufficient compute (Krizhevsky parallelized the training across two GPUs), and an architectural insight — using rectified linear units instead of sigmoid activations, which allowed gradients to propagate through deep networks without vanishing.
+      </p>
+
+      <p>
+        The field's response was immediate and total. Within a year, virtually every competitive computer vision system was a deep neural network. Within five years, deep learning had spread to natural language processing, speech recognition, protein structure prediction, game-playing, and drug discovery. The question was no longer whether deep learning worked but whether there was anything it could not do.
+      </p>
+
+      <div class="section-ornament">· · ·</div>
+
+      <h3>What the weights actually encode</h3>
+
+      <p>
+        Inside a trained neural network, the learned parameters — the weights — encode something like knowledge, though not in any form that maps onto human categories of understanding. In the early layers of a convolutional network trained on images, the weights encode edges and textures. In later layers, they encode shapes, then object parts, then objects themselves. This hierarchical feature extraction was not programmed. It emerged from the training process.
+      </p>
+
+      <p>
+        This emergence is both the power and the mystery of deep learning. No one told the network that edges were a useful intermediate representation for identifying objects. The network discovered this itself — because edges are, in fact, a useful intermediate representation, and the training objective (minimize classification error on labeled examples) happened to reward encoding them.
+      </p>
+
+      <p>
+        The network optimized for a proxy (prediction accuracy on labeled training data) and discovered something real. This is remarkable. It suggests that, given enough data and a suitable objective, gradient descent will find representations that reflect the actual structure of the world — or at least, of the world as the training data samples it.
+      </p>
+
+      <h2>IV. The Limits of What We Can See Inside</h2>
+
+      <p>
+        The field of interpretability research exists because this opacity is not merely philosophically troubling — it is practically dangerous. A neural network deployed in a medical diagnosis context, or a criminal sentencing context, or a targeting context, may have learned to rely on features that are spurious, discriminatory, or fragile. Without the ability to inspect what the model has actually learned, we have no reliable way to know.
+      </p>
+
+      <p>
+        Interpretability researchers have developed a suite of techniques: saliency maps that highlight which input pixels most influenced a prediction; probing classifiers that test whether specific concepts are linearly encoded in the network's activations; activation patching that traces causal pathways through the network's computation graph. These tools illuminate real structure. They also reveal how much remains dark.
+      </p>
+
+      <p>
+        A network might learn a feature that is perfectly correlated with the correct label in the training data and completely uncorrelated with it in the real world. A skin cancer classifier trained on images from hospitals where cancerous lesions were often photographed with a ruler might learn to associate the presence of a ruler with cancer. A recidivism prediction tool might learn to proxy race through zip code. The model performs. The model is wrong, in ways that matter.
+      </p>
+
+      <div class="pull-quote">
+        <p>"The gap between what a model optimizes for and what we actually want from it is not a technical problem. It is a moral one. And closing it requires more than better architectures."</p>
+      </div>
+
+      <h2>V. Toward Understanding</h2>
+
+      <p>
+        None of this should lead us to conclude that neural networks are useless, or that their opacity is permanent. The history of science is a history of making sense of what was initially black-box: thermodynamics before statistical mechanics, inheritance before molecular biology, neural computation before theoretical neuroscience. Understanding follows deployment; it rarely precedes it.
+      </p>
+
+      <p>
+        What it should lead us to is a more calibrated posture toward these systems — one that neither dismisses them as parlor tricks nor treats their outputs as oracular. Neural networks are extraordinarily powerful function approximators. They can learn to compress remarkable regularities about the world into weighted graphs. They cannot, yet, explain their reasoning in terms we can verify. They cannot, yet, robustly generalize beyond their training distribution. They cannot, yet, be trusted blindly.
+      </p>
+
+      <p>
+        The architecture of thought, as artificial systems currently implement it, is impressive and partial. The question of whether it can become complete — whether learned representations can ever be transparent, verified, and reliably aligned with human values — is not settled. It is, arguably, the most important open question in technology today.
+      </p>
+
+      <p>
+        The answer will determine what kind of century we are entering.
+      </p>
+
+    </div><!-- /article-body -->
+
+    <hr class="section-rule" style="margin-top: 0;" />
+
+    <footer style="padding: 3rem 2.5rem;">
+      <span class="footer-wordmark">Signal</span>
+      <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
+    </footer>
+
+  </div><!-- /article-neural -->
+
+
+  <script>
+    function showArticle() {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('article-neural').style.display = 'block';
+      window.scrollTo(0, 0);
+      triggerFadeIns();
+    }
+
+    function showHome() {
+      document.getElementById('article-neural').style.display = 'none';
+      document.getElementById('home').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    // Scroll-triggered fade-ins
+    function triggerFadeIns() {
+      const els = document.querySelectorAll('.fade-in');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('visible'), i * 80);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(el => obs.observe(el));
+    }
+
+    document.addEventListener('DOMContentLoaded', triggerFadeIns);
+  </script>
+
+</body>
+</html>
