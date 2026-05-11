@@ -48,7 +48,7 @@
       border-bottom: 1px solid var(--rule-med);
       padding: 2rem 2.5rem;
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
       gap: 2rem;
       flex-wrap: wrap;
@@ -66,12 +66,7 @@
       color: var(--accent);
       text-decoration: none;
     }
-    .masthead-nav {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
+    .masthead-nav { display: flex; gap: 2rem; list-style: none; }
     .masthead-nav a {
       font-family: var(--sans);
       font-size: 0.68rem;
@@ -82,45 +77,6 @@
       transition: color 0.2s;
     }
     .masthead-nav a:hover { color: var(--ink); }
-
-    /* Home icon button */
-    .home-icon-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: 1px solid var(--rule-med);
-      border-radius: 3px;
-      padding: 0.35rem 0.5rem;
-      cursor: pointer;
-      color: var(--ink-muted);
-      text-decoration: none;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-      line-height: 1;
-    }
-    .home-icon-btn:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: rgba(201, 169, 110, 0.06);
-    }
-    .home-icon-btn svg {
-      display: block;
-    }
-
-    /* ─── PAGES — slide-based layout ─── */
-    #pages-container {
-      display: flex;
-      width: 400%;          /* 4 pages × 100vw */
-      transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
-      will-change: transform;
-      /* Each page is exactly 1 viewport-width */
-    }
-    .page {
-      width: 25%;           /* 100vw of the container */
-      flex-shrink: 0;
-      min-height: 100vh;
-      overflow-y: auto;     /* Each page scrolls independently */
-    }
 
     /* ─── HERO ─── */
     .hero {
@@ -188,7 +144,10 @@
       color: var(--ink-muted);
       flex: 1;
     }
-    .draft-notice-text strong { color: var(--ink); font-weight: 500; }
+    .draft-notice-text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
     .amazon-link {
       display: inline-flex;
       align-items: center;
@@ -207,6 +166,14 @@
       white-space: nowrap;
     }
     .amazon-link:hover { opacity: 0.85; }
+    .amazon-logo {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--paper);
+      text-decoration: none;
+    }
 
     /* ─── DIVIDER ─── */
     .section-rule { border: none; border-top: 1px solid var(--rule); margin: 0 2.5rem; }
@@ -230,6 +197,7 @@
       border-bottom: 1px solid var(--rule);
     }
     .card-secondary:last-child { border-bottom: none; }
+
     .card-topic {
       font-family: var(--mono);
       font-size: 0.6rem;
@@ -254,7 +222,7 @@
       margin-bottom: 1.25rem;
       color: var(--ink);
     }
-    .card-title a { color: inherit; text-decoration: none; transition: color 0.2s; cursor: pointer; }
+    .card-title a { color: inherit; text-decoration: none; transition: color 0.2s; }
     .card-title a:hover { color: var(--accent); }
     .card-secondary .card-title { font-size: 1.5rem; line-height: 1.2; margin-bottom: 0.8rem; }
     .card-excerpt {
@@ -292,8 +260,20 @@
       transition: color 0.2s;
     }
     .card-pdf:hover { color: var(--ink-muted); }
+    .coming-soon-badge {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      border: 1px solid var(--rule);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
 
     /* ─── ARTICLE PAGES ─── */
+    #article-neural, #article-warfare, #article-synthetic { display: none; }
+
     .article-header {
       padding: 6rem 2.5rem 4rem;
       max-width: var(--wide);
@@ -390,6 +370,7 @@
     }
     .article-aside p { font-family: var(--sans); font-size: 0.82rem !important; line-height: 1.6 !important; color: var(--ink-dim) !important; margin-bottom: 0 !important; }
 
+    /* Draft notice inline in article */
     .article-draft-note {
       background: var(--paper-3);
       border: 1px solid var(--rule-med);
@@ -448,6 +429,7 @@
       .card-secondary { padding: 2rem 0; }
       .hero { padding: 4rem 1.5rem 3rem; }
       .masthead { padding: 1.5rem; }
+      .masthead-nav { display: none; }
       .draft-notice, .articles-grid, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
       .article-header { padding: 4rem 1.5rem 2rem; }
       .article-body { padding: 0 1.5rem 5rem; }
@@ -458,487 +440,528 @@
 </head>
 <body>
 
-  <!-- Sticky masthead lives OUTSIDE the sliding pages -->
-  <header class="masthead" id="masthead">
-    <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">
-      Nathan Reitinger
-    </a>
-    <nav>
-      <ul class="masthead-nav" id="masthead-nav">
-        <!-- Home icon — always visible, goes to home page -->
-        <li>
-          <a href="#home" class="home-icon-btn" id="home-icon" onclick="navigateTo('home'); return false;" title="Home" aria-label="Home">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
-              <polyline points="9 21 9 13 15 13 15 21"/>
-            </svg>
-          </a>
-        </li>
-        <!-- Article nav links — shown on article pages -->
-        <li id="nav-back" style="display:none;">
-          <a href="#home" onclick="navigateTo('home'); return false;">← All Chapters</a>
-        </li>
-        <!-- GitHub icon -->
-        <li>
-          <a href="https://github.com/nathanReitinger/ai-encyclopedia" target="_blank" rel="noopener" aria-label="GitHub" style="display:flex;align-items:center;">
-            <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="color:var(--ink-muted); transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-muted)'">
-              <path d="M12 .5C5.73.5.75 5.62.75 12.1c0 5.2 3.44 9.62 8.2 11.18.6.12.82-.27.82-.58v-2.1c-3.34.75-4.04-1.65-4.04-1.65-.55-1.45-1.35-1.84-1.35-1.84-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.3 1.86 1.3 1.08 1.9 2.82 1.35 3.5 1.03.11-.8.42-1.35.76-1.66-2.66-.31-5.46-1.37-5.46-6.1 0-1.35.47-2.46 1.25-3.33-.13-.31-.54-1.58.12-3.3 0 0 1.02-.33 3.34 1.27.97-.28 2.02-.42 3.06-.43 1.04.01 2.09.15 3.06.43 2.32-1.6 3.34-1.27 3.34-1.27.66 1.72.25 2.99.12 3.3.78.87 1.25 1.98 1.25 3.33 0 4.74-2.81 5.79-5.49 6.09.43.39.81 1.16.81 2.34v3.46c0 .31.22.7.83.58 4.76-1.56 8.2-5.98 8.2-11.18C23.25 5.62 18.27.5 12 .5z"/>
-            </svg>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <!-- ═══════════════ HOME PAGE ═══════════════ -->
+  <div id="home">
 
-  <!-- ═══ SLIDING PAGES CONTAINER ═══ -->
-  <div id="pages-container">
+    <header class="masthead">
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">
+        Nathan Reitinger
+      </a>
 
-    <!-- PAGE 0: HOME -->
-    <div class="page" id="page-home">
+      <nav>
+        <ul class="masthead-nav">
+          <!-- <li><a href="#articles">Chapters</a></li> -->
 
-      <section class="hero fade-in">
-        <div class="hero-left">
-          <p class="hero-issue">AI - Encyclopedia</p>
-          <h1 class="hero-title">At the <em>edge</em></h1>
-        </div>
-        <div class="hero-right">
-          <p class="hero-lede">
-            Three long-form chapters on the technologies reshaping conflict, cognition, and the nature of knowledge itself.
-          </p>
-          <div class="hero-rule"></div>
-          <p class="hero-byline">Neural Networks &nbsp;·&nbsp; Warfare &nbsp;·&nbsp; Synthetic Data</p>
-        </div>
-      </section>
-
-      <hr class="section-rule" />
-
-      <div class="draft-notice" style="padding-top: 2.5rem; padding-bottom: 0;">
-        <div class="draft-notice-inner">
-          <p class="draft-notice-text">
-            <strong>These are draft chapters.</strong> The final versions appear in the
-            <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em> — a comprehensive reference work available now. If you find these chapters valuable, consider picking up the full volume.
-          </p>
-          <a class="amazon-link"
-             href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898"
-             target="_blank"
-             rel="noopener">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/amazon.svg" alt="Amazon" width="18" height="18" />
-            <span>Buy the Book</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="articles-grid" id="articles">
-
-        <article class="card-featured fade-in">
-          <p class="card-topic">Neural Networks</p>
-          <h2 class="card-title">
-            <a href="#neural" onclick="navigateTo('neural'); return false;">
-              The Architecture of Thought: How Neural Networks Learn to See the World
+          <li>
+            <a href="https://github.com/nathanReitinger/ai-encyclopedia" target="_blank" rel="noopener" class="github-link" aria-label="GitHub">
+              <!-- GitHub Icon (inline SVG) -->
+              <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .5C5.73.5.75 5.62.75 12.1c0 5.2 3.44 9.62 8.2 11.18.6.12.82-.27.82-.58v-2.1c-3.34.75-4.04-1.65-4.04-1.65-.55-1.45-1.35-1.84-1.35-1.84-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.3 1.86 1.3 1.08 1.9 2.82 1.35 3.5 1.03.11-.8.42-1.35.76-1.66-2.66-.31-5.46-1.37-5.46-6.1 0-1.35.47-2.46 1.25-3.33-.13-.31-.54-1.58.12-3.3 0 0 1.02-.33 3.34 1.27.97-.28 2.02-.42 3.06-.43 1.04.01 2.09.15 3.06.43 2.32-1.6 3.34-1.27 3.34-1.27.66 1.72.25 2.99.12 3.3.78.87 1.25 1.98 1.25 3.33 0 4.74-2.81 5.79-5.49 6.09.43.39.81 1.16.81 2.34v3.46c0 .31.22.7.83.58 4.76-1.56 8.2-5.98 8.2-11.18C23.25 5.62 18.27.5 12 .5z"/>
+              </svg>
             </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero fade-in">
+      <div class="hero-left">
+        <p class="hero-issue">AI - Encyclopedia</p>
+        <h1 class="hero-title">At the <em>edge</em><br></h1>
+      </div>
+      <div class="hero-right">
+        <p class="hero-lede">
+          Three long-form chapters on the technologies reshaping conflict, cognition, and the nature of knowledge itself.
+        </p>
+        <div class="hero-rule"></div>
+        <p class="hero-byline">Neural Networks &nbsp;·&nbsp; Warfare &nbsp;·&nbsp; Synthetic Data</p>
+      </div>
+    </section>
+
+    <hr class="section-rule" />
+
+    <!-- Draft notice banner -->
+    <div class="draft-notice" style="padding-top: 2.5rem; padding-bottom: 0;">
+      <div class="draft-notice-inner">
+        <p class="draft-notice-text">
+          <strong>These are draft chapters.</strong> The final versions appear in the 
+          <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em> — a comprehensive reference work available now. If you find these chapters valuable, consider picking up the full volume.
+        </p>
+
+        <a class="amazon-link"
+           href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898"
+           target="_blank"
+           rel="noopener">
+
+          <!-- Reliable Amazon SVG icon -->
+          <img 
+            src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/amazon.svg"
+            alt="Amazon"
+            class="amazon-icon"
+            width="18"
+            height="18"
+          />
+
+          <span>Buy the Book</span>
+        </a>
+      </div>
+    </div>
+
+    <div style="padding: 2.5rem 2.5rem 0; max-width: var(--wide); margin: 0 auto;">
+      <!-- no label -->
+    </div>
+
+    <div class="articles-grid" id="articles">
+
+      <!-- Featured: Neural Networks -->
+      <article class="card-featured fade-in">
+        <p class="card-topic">Neural Networks</p>
+        <h2 class="card-title">
+          <a href="#" onclick="showArticle('article-neural'); return false;">
+            The Architecture of Thought: How Neural Networks Learn to See the World
+          </a>
+        </h2>
+        <p class="card-excerpt">
+          One of the most common concepts surrounding artificial intelligence is the term "neural network." As this entry discusses, the neural network is not only surprisingly simple, but it also illuminates the functionality and limitations of even the most advanced machine learning models used today. A neural network is a collection of mathematical functions working in unison to process numerical input in a way that produces correct, "right" output — and from that spare definition, everything from autonomous vehicles to lethal weapons systems becomes possible.
+        </p>
+        <div class="card-meta">
+          <a class="card-cta" href="#" onclick="showArticle('article-neural'); return false;">Read Chapter →</a>
+          <a class="card-pdf" href="pdfs/neural-networks.pdf" target="_blank" rel="noopener">↓ PDF</a>
+        </div>
+      </article>
+
+      <div class="cards-secondary">
+
+        <article class="card-secondary fade-in">
+          <p class="card-number">02</p>
+          <p class="card-topic">Warfare</p>
+          <h2 class="card-title">
+            <a href="#" onclick="showArticle('article-warfare'); return false;">Autonomous Kill Chains: AI Decision-Making on the Lethal Edge</a>
           </h2>
           <p class="card-excerpt">
-            One of the most common concepts surrounding artificial intelligence is the term "neural network." As this entry discusses, the neural network is not only surprisingly simple, but it also illuminates the functionality and limitations of even the most advanced machine learning models used today. A neural network is a collection of mathematical functions working in unison to process numerical input in a way that produces correct, "right" output — and from that spare definition, everything from autonomous vehicles to lethal weapons systems becomes possible.
+            What happens when artificial intelligence is given the power to make life-and-death decisions? Is it ever desirable for a machine to decide if a human lives or dies — and if so, what restrictions should constrain it? Lethal autonomous weapons systems represent one of the most difficult frontiers opened by AI: accountability gaps, just-war doctrine, and machines empowered to select and engage targets without human intervention.
           </p>
           <div class="card-meta">
-            <a class="card-cta" href="#neural" onclick="navigateTo('neural'); return false;">Read Chapter →</a>
-            <a class="card-pdf" href="pdfs/neural-networks.pdf" target="_blank" rel="noopener">↓ PDF</a>
+            <a class="card-cta" href="#" onclick="showArticle('article-warfare'); return false;">Read Chapter →</a>
+            <a class="card-pdf" href="pdfs/warfare.pdf" target="_blank" rel="noopener">↓ PDF</a>
           </div>
         </article>
 
-        <div class="cards-secondary">
-          <article class="card-secondary fade-in">
-            <p class="card-number">02</p>
-            <p class="card-topic">Warfare</p>
-            <h2 class="card-title">
-              <a href="#warfare" onclick="navigateTo('warfare'); return false;">Autonomous Kill Chains: AI Decision-Making on the Lethal Edge</a>
-            </h2>
-            <p class="card-excerpt">
-              What happens when artificial intelligence is given the power to make life-and-death decisions? Is it ever desirable for a machine to decide if a human lives or dies — and if so, what restrictions should constrain it? Lethal autonomous weapons systems represent one of the most difficult frontiers opened by AI: accountability gaps, just-war doctrine, and machines empowered to select and engage targets without human intervention.
-            </p>
-            <div class="card-meta">
-              <a class="card-cta" href="#warfare" onclick="navigateTo('warfare'); return false;">Read Chapter →</a>
-              <a class="card-pdf" href="pdfs/warfare.pdf" target="_blank" rel="noopener">↓ PDF</a>
-            </div>
-          </article>
-
-          <article class="card-secondary fade-in">
-            <p class="card-number">03</p>
-            <p class="card-topic">Synthetic Data</p>
-            <h2 class="card-title">
-              <a href="#synthetic" onclick="navigateTo('synthetic'); return false;">The Invented World: How Synthetic Data Is Feeding the Machine</a>
-            </h2>
-            <p class="card-excerpt">
-              Generative AI is a general-purpose tool with many applications — but of particular interest is what happens when generation is pointed at data itself. Synthetic data promises to solve problems of scale, privacy, and legal risk all at once. It may be no silver bullet, but it reveals something profound about the epistemology of a training set, and about who controls what machines learn.
-            </p>
-            <div class="card-meta">
-              <a class="card-cta" href="#synthetic" onclick="navigateTo('synthetic'); return false;">Read Chapter →</a>
-              <a class="card-pdf" href="pdfs/synthetic-data.pdf" target="_blank" rel="noopener">↓ PDF</a>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <hr class="section-rule" />
-      <footer>
-        <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
-        <span class="footer-copy">Essays on warfare, synthetic data, and neural networks.</span>
-      </footer>
-    </div><!-- /page-home -->
-
-
-    <!-- PAGE 1: NEURAL NETWORKS -->
-    <div class="page" id="page-neural">
-      <button class="back-btn" onclick="navigateTo('home')">← Back to all chapters</button>
-
-      <div class="article-header fade-in">
-        <div>
-          <p class="article-kicker">Neural Networks &nbsp;·&nbsp; Chapter 64</p>
-          <h1 class="article-headline">Neural Networks</h1>
-        </div>
-        <div class="article-meta-block">
-          <p class="article-standfirst">
-            A neural network is a collection of simple, singular functions that take numerical input, process that input through a series of mathematical operations, and produce an output. From this spare foundation, everything changes.
+        <article class="card-secondary fade-in">
+          <p class="card-number">03</p>
+          <p class="card-topic">Synthetic Data</p>
+          <h2 class="card-title">
+            <a href="#" onclick="showArticle('article-synthetic'); return false;">The Invented World: How Synthetic Data Is Feeding the Machine</a>
+          </h2>
+          <p class="card-excerpt">
+            Generative AI is a general-purpose tool with many applications — but of particular interest is what happens when generation is pointed at data itself. Synthetic data promises to solve problems of scale, privacy, and legal risk all at once. It may be no silver bullet, but it reveals something profound about the epistemology of a training set, and about who controls what machines learn.
           </p>
-          <div class="article-byline-row">
-            <div>
-              <p class="article-author">By Nathan Reitinger</p>
-              <p class="article-date">Encyclopedia of Artificial Intelligence and Law &nbsp;·&nbsp; Draft</p>
-            </div>
-            <a class="article-pdf-link" href="pdfs/neural-networks.pdf" target="_blank" rel="noopener">Download PDF</a>
+          <div class="card-meta">
+            <a class="card-cta" href="#" onclick="showArticle('article-synthetic'); return false;">Read Chapter →</a>
+            <a class="card-pdf" href="pdfs/synthetic-data.pdf" target="_blank" rel="noopener">↓ PDF</a>
           </div>
-        </div>
+        </article>
+
       </div>
+    </div>
 
-      <hr class="section-rule" />
+    <hr class="section-rule" />
 
-      <div class="article-body">
-        <div class="article-draft-note">
-          <p><strong>Draft chapter.</strong> This is a pre-publication draft. The final version appears in the <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em>, available for purchase <a href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898" target="_blank" rel="noopener">on Amazon</a>.</p>
-        </div>
+    <footer id="about">
+      <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
+      <span class="footer-copy">Essays on warfare, synthetic data, and neural networks.</span>
+    </footer>
 
-        <p class="lede">
-          Traditional computer programming requires an author to tell a machine exactly what to do. Machine learning flips this paradigm on its head, requiring the programmer to know only the correct output, not how that output was generated. This magic is made possible, in part, by representing problems as mathematical equations — networks that process input to arrive at correct output.
-        </p>
-        <p>
-          Neural networks are one of two fundamental features in machine learning that permit automated learning — digitizing the ability to solve future, unknown problems given examples of currently known solutions. The neural network represents the "machine" of machine learning. Although neural networks represent, as a singular artificial neuron, intuitive mathematics, the layering and scale found in real-world neural networks, not to mention the relation to neuroscience, may make the concept unfamiliar at first blush.
-        </p>
+  </div><!-- /home -->
 
-        <h2>Background</h2>
-        <p>
-          In the 1940s, Warren McCulloch, a neurophysiologist, and Walter Pitts, a logician, realized that one of the most advanced machines in existence — the human brain — relied on incredibly simple neurons that themselves could be represented as individual functions. A neuron receives input through a dendrite, processes that input in the nucleus, and produces an output sent along an axon; artificial neurons could be built to take input in the form of numbers, process the input via some type of algorithm, and pass the result of the neuron forward. Although this sounds complicated, it relies on simple mathematics.
-        </p>
-        <p>The following mathematical formula may be considered a single neuron — a single neural network — just before the activation function is applied:</p>
 
-        <div class="pull-quote">
-          <p>bias + (input<sub>x</sub> × weight₁) + (input<sub>y</sub> × weight₂) = intermediate output</p>
-          <cite>— The perceptron formula</cite>
-        </div>
+  <!-- ═══════════════ ARTICLE: NEURAL NETWORKS ═══════════════ -->
+  <div id="article-neural">
 
-        <p>
-          The intermediate output is then run through an activation function. Like a ReLU: if the intermediate output is less than zero, the final output is zero; if more than or equal to zero, the final output is one. In short, if each of these variables is set just right, the artificial neuron will produce correct output to a specific — and potentially useful — problem.
-        </p>
-        <p>
-          Interestingly, although the neuron just described is the brain behind some of the most complex artificial intelligence architectures today, the idea went dormant in the decades after its release. This dormancy remained despite Frank Rosenblatt's work on automatically updating the neuron's variables to receive more and more correct output. As a quote from 1958 portrays: "We are now about to witness the birth of such a machine — a machine capable of perceiving, recognizing and identifying its surroundings without any human training or control."
-        </p>
+    <header class="masthead">
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">Nathan Reitinger</a>
+      <nav>
+        <ul class="masthead-nav">
+          <li><a href="#" onclick="showHome(); return false;">← All Chapters</a></li>
+        </ul>
+      </nav>
+    </header>
 
-        <h2>The Universal Approximation Theorem</h2>
-        <p>
-          What Professor Rosenblatt was referring to, and what was not practically possible until the recent artificial intelligence era, was the universal approximation theorem: any real-world problem which is able to be mathematically mapped as a continuous function can be solved with nearly-perfect accuracy by using a neural network. In other words, if a neural network is large enough, it can solve any real-world problem that may be mathematically described.
-        </p>
-        <p>
-          Consider the AND gate. If the bias term is set to negative two and both weights to one, the network correctly produces the right output for all combinations of input — from (0,0) to (1,1). But what if instead of the AND gate, we wanted to represent the logical XOR gate? A single neuron does not work. What Rosenblatt was considering was the layering of one neuron with other neurons — which can, theoretically, answer problems like the XOR gate by combining a NAND neuron with an OR neuron. These layers are where the concept of a "deep" neural network comes from. The more layers, the deeper the network.
-        </p>
+    <button class="back-btn" onclick="showHome()">← Back to all chapters</button>
 
-        <div class="pull-quote">
-          <p>"Because of the universal approximation theorem, adding more and more layers allows a machine to drive vehicles, recognize speech, and talk — from lethal autonomous weapons systems to synthetic data to the autonomous vehicles we have on the roads today."</p>
-        </div>
-
-        <h2>Limitations</h2>
-        <h3>Input-output constraints</h3>
-        <p>
-          Neural networks operate by considering input and producing output. If a problem cannot be molded into that workflow — a mathematical input-to-output — then a neural network will be no good at solving the problem. Although there are an infinite number of colors that exist in the real world, computers can only represent colors in a finite and limited way, using a series of red, green, and blue pixel values. Although color itself is continuous in the natural world, computers must downgrade those colors in the digital world to operate on them — something which, in some ways, is unavoidably reductionist.
-        </p>
-
-        <h3>Inscrutability and traceability</h3>
-        <p>
-          It can sometimes be useful to think of machine learning models as inscrutable, given the difficulty of tracing particular inputs to particular outputs. However, that thinking elides the fact that these networks are surely accessible in some fashion. Neural networks do not produce truly random output. A neural network taught to recognize hand-written digits will not suddenly be able to distinguish between images of cats and dogs. Even "random" and untoward outcomes of advanced neural networks that have learned undesired behaviors — like Microsoft's Tay — have a traceable path.
-        </p>
-
-        <h3>Finite mathematical goals</h3>
-        <p>
-          Neural networks have finite and mathematical goals in mind. The AND gate from above was told exactly what type of output was correct: zero or one. The world, according to that neural network, consisted of no more than zeros and ones. The same is true of neural networks used to drive vehicles or generate art. The network is approximating a problem by rudimentarily turning that problem into a mathematical equation. This means that unless the mathematical problem incorporates values we as a society care about — like equality — the network will simply not consider them.
-        </p>
-
-        <div class="article-aside">
-          <p><strong>Note:</strong> Developers must think carefully about how neural networks are used and what is — or is not — considered as input and output by a neural network.</p>
-        </div>
-
-        <h2>Conclusion</h2>
-        <p>
-          It was not until recently that researchers began layering neurons in such a massive fashion that the aims of McCulloch, Pitts, and Rosenblatt came to fruition. These networks are beginning to match or outperform humans at a variety of tasks, though those breakthroughs are coming from scale rather than invention. Network types have been showing improvements in recent years: convolutional neural networks became popular for vision, generative adversarial networks started a generative trend, and diffusion models have more recently taken hold. And yet, the core of these networks, so far, has remained the groundwork laid by McCulloch, Pitts, and Rosenblatt.
-        </p>
-        <p>
-          Systems that rely on "more compute" to achieve better performance may get an architectural update in the future — one that could unlock performance boosts that seem limited when scale plateaus. For the moment, however, neural networks can still be abstracted, in some sense, to the perceptron from the 1950s, meaning that the understanding laid out above will continue to capture the essence of artificial intelligence for the foreseeable future.
-        </p>
+    <div class="article-header fade-in">
+      <div>
+        <p class="article-kicker">Neural Networks &nbsp;·&nbsp; Chapter 64</p>
+        <h1 class="article-headline">Neural Networks</h1>
       </div>
-
-      <hr class="section-rule" style="margin-top: 0;" />
-      <footer style="padding: 3rem 2.5rem;">
-        <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
-        <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
-      </footer>
-    </div><!-- /page-neural -->
-
-
-    <!-- PAGE 2: WARFARE -->
-    <div class="page" id="page-warfare">
-      <button class="back-btn" onclick="navigateTo('home')">← Back to all chapters</button>
-
-      <div class="article-header fade-in">
-        <div>
-          <p class="article-kicker">Warfare &nbsp;·&nbsp; Chapter 107</p>
-          <h1 class="article-headline">Warfare</h1>
-        </div>
-        <div class="article-meta-block">
-          <p class="article-standfirst">
-            Lethal autonomous weapons systems are weapons that, after being turned on, select and engage targets without human intervention. Accountability gaps, alignment with "just" war practices, and the moral weight of machines taking human lives are just a few of the headline issues in this area.
-          </p>
-          <div class="article-byline-row">
-            <div>
-              <p class="article-author">By Nathan Reitinger</p>
-              <p class="article-date">Encyclopedia of Artificial Intelligence and Law &nbsp;·&nbsp; Draft</p>
-            </div>
-            <a class="article-pdf-link" href="pdfs/warfare.pdf" target="_blank" rel="noopener">Download PDF</a>
+      <div class="article-meta-block">
+        <p class="article-standfirst">
+          A neural network is a collection of simple, singular functions that take numerical input, process that input through a series of mathematical operations, and produce an output. From this spare foundation, everything changes.
+        </p>
+        <div class="article-byline-row">
+          <div>
+            <p class="article-author">By Nathan Reitinger</p>
+            <p class="article-date">Encyclopedia of Artificial Intelligence and Law &nbsp;·&nbsp; Draft</p>
           </div>
+          <a class="article-pdf-link" href="pdfs/neural-networks.pdf" target="_blank" rel="noopener">Download PDF</a>
         </div>
       </div>
+    </div>
 
-      <hr class="section-rule" />
+    <hr class="section-rule" />
 
-      <div class="article-body">
-        <div class="article-draft-note">
-          <p><strong>Draft chapter.</strong> This is a pre-publication draft. The final version appears in the <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em>, available for purchase <a href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898" target="_blank" rel="noopener">on Amazon</a>.</p>
-        </div>
+    <div class="article-body">
 
-        <p class="lede">
-          What happens when artificial intelligence is given the power to make life-and-death decisions? Is it ever desirable for a machine to decide if a human lives or dies — and if so, what types of restrictions should be placed around weapons capable of making these decisions?
-        </p>
+      <div class="article-draft-note">
+        <p><strong>Draft chapter.</strong> This is a pre-publication draft. The final version appears in the <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em>, available for purchase <a href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898" target="_blank" rel="noopener">on Amazon</a>.</p>
+      </div>
+
+      <p class="lede">
+        Traditional computer programming requires an author to tell a machine exactly what to do. Machine learning flips this paradigm on its head, requiring the programmer to know only the correct output, not how that output was generated. This magic is made possible, in part, by representing problems as mathematical equations — networks that process input to arrive at correct output.
+      </p>
+
+      <p>
+        Neural networks are one of two fundamental features in machine learning that permit automated learning — digitizing the ability to solve future, unknown problems given examples of currently known solutions. The neural network represents the "machine" of machine learning. Although neural networks represent, as a singular artificial neuron, intuitive mathematics, the layering and scale found in real-world neural networks, not to mention the relation to neuroscience, may make the concept unfamiliar at first blush.
+      </p>
+
+      <h2>Background</h2>
+
+      <p>
+        In the 1940s, Warren McCulloch, a neurophysiologist, and Walter Pitts, a logician, realized that one of the most advanced machines in existence — the human brain — relied on incredibly simple neurons that themselves could be represented as individual functions. A neuron receives input through a dendrite, processes that input in the nucleus, and produces an output sent along an axon; artificial neurons could be built to take input in the form of numbers, process the input via some type of algorithm, and pass the result of the neuron forward. Although this sounds complicated, it relies on simple mathematics.
+      </p>
+
+      <p>
+        The following mathematical formula may be considered a single neuron — a single neural network — just before the activation function is applied:
+      </p>
+
+      <div class="pull-quote">
+        <p>bias + (input<sub>x</sub> × weight₁) + (input<sub>y</sub> × weight₂) = intermediate output</p>
+        <cite>— The perceptron formula</cite>
+      </div>
+
+      <p>
+        The intermediate output is then run through an activation function. Like a ReLU: if the intermediate output is less than zero, the final output is zero; if more than or equal to zero, the final output is one. In short, if each of these variables is set just right, the artificial neuron will produce correct output to a specific — and potentially useful — problem.
+      </p>
+
+      <p>
+        Interestingly, although the neuron just described is the brain behind some of the most complex artificial intelligence architectures today, the idea went dormant in the decades after its release. This dormancy remained despite Frank Rosenblatt's work on automatically updating the neuron's variables to receive more and more correct output. As a quote from 1958 portrays: "We are now about to witness the birth of such a machine — a machine capable of perceiving, recognizing and identifying its surroundings without any human training or control."
+      </p>
+
+      <h2>The Universal Approximation Theorem</h2>
+
+      <p>
+        What Professor Rosenblatt was referring to, and what was not practically possible until the recent artificial intelligence era, was the universal approximation theorem: any real-world problem which is able to be mathematically mapped as a continuous function can be solved with nearly-perfect accuracy by using a neural network. In other words, if a neural network is large enough, it can solve any real-world problem that may be mathematically described.
+      </p>
+
+      <p>
+        Consider the AND gate. If the bias term is set to negative two and both weights to one, the network correctly produces the right output for all combinations of input — from (0,0) to (1,1). But what if instead of the AND gate, we wanted to represent the logical XOR gate? A single neuron does not work. What Rosenblatt was considering was the layering of one neuron with other neurons — which can, theoretically, answer problems like the XOR gate by combining a NAND neuron with an OR neuron. These layers are where the concept of a "deep" neural network comes from. The more layers, the deeper the network.
+      </p>
+
+      <div class="pull-quote">
+        <p>"Because of the universal approximation theorem, adding more and more layers allows a machine to drive vehicles, recognize speech, and talk — from lethal autonomous weapons systems to synthetic data to the autonomous vehicles we have on the roads today."</p>
+      </div>
+
+      <h2>Limitations</h2>
+
+      <h3>Input-output constraints</h3>
+
+      <p>
+        Neural networks operate by considering input and producing output. If a problem cannot be molded into that workflow — a mathematical input-to-output — then a neural network will be no good at solving the problem. Although there are an infinite number of colors that exist in the real world, computers can only represent colors in a finite and limited way, using a series of red, green, and blue pixel values. Although color itself is continuous in the natural world, computers must downgrade those colors in the digital world to operate on them — something which, in some ways, is unavoidably reductionist.
+      </p>
+
+      <h3>Inscrutability and traceability</h3>
+
+      <p>
+        It can sometimes be useful to think of machine learning models as inscrutable, given the difficulty of tracing particular inputs to particular outputs. However, that thinking elides the fact that these networks are surely accessible in some fashion. Neural networks do not produce truly random output. A neural network taught to recognize hand-written digits will not suddenly be able to distinguish between images of cats and dogs. Even "random" and untoward outcomes of advanced neural networks that have learned undesired behaviors — like Microsoft's Tay — have a traceable path.
+      </p>
+
+      <h3>Finite mathematical goals</h3>
+
+      <p>
+        Neural networks have finite and mathematical goals in mind. The AND gate from above was told exactly what type of output was correct: zero or one. The world, according to that neural network, consisted of no more than zeros and ones. The same is true of neural networks used to drive vehicles or generate art. The network is approximating a problem by rudimentarily turning that problem into a mathematical equation. This means that unless the mathematical problem incorporates values we as a society care about — like equality — the network will simply not consider them.
+      </p>
+
+      <div class="article-aside">
         <p>
-          In the international law context, these types of weapons are known as "lethal autonomous weapons systems" — weapons that, after being turned on, select and engage targets without human intervention. These weapons represent one of the many difficult areas that have been upended by artificial intelligence. Accountability gaps, alignment with "just" war practices, and moral or ethical qualms with machines taking human lives are just a few of the headline issues in this area.
-        </p>
-
-        <h2>Technical</h2>
-        <p>
-          In the autonomous weapons hierarchy, LAWS sit second from the top. At the bottom are in-the-loop systems — those that require a human to "complete the loop," weapons that do not work without human engagement, like a single-action trigger pistol. Next up are on-the-loop systems, where the system may operate in a semi-autonomous mode, but a human remains a crucial component and is always able to intervene. Finally, out-of-the-loop systems are those that, once activated, select and engage targets without human intervention or control — these are LAWS.
-        </p>
-        <p>
-          It is worth noting that even the definition of LAWS has seen a large amount of contention. The mostly accepted definition is, in fact, narrow: LAWS refer specifically to situations where a weapons system both "selects" and "engages" targets. A sentry gun, once activated, fits this bill. Practical examples include the United States Navy's Phalanx system and Israel's Iron Dome — each may allow for human control, but a human's ability to monitor and react pales in comparison to the machine.
-        </p>
-
-        <div class="pull-quote">
-          <p>"They don't get hungry. They're not afraid. They don't forget their orders. They don't care if the guy next to them has just been shot. Will they do a better job than humans? Yes."</p>
-          <cite>— Gordon Johnson, Joint Forces Command, Pentagon, 2005</cite>
-        </div>
-
-        <p>
-          Some of the confusion in demarcating first- to second- to third-loop systems may come from thinking that current-day technology is more capable than it really is. If there existed a machine that not only selects and engages targets on its own but also possesses something akin to moral agency — debating the merits of actions with logical reasoning or seeming to express free will — then the definition of "fully" autonomous seems like it should take on a new meaning. These fourth-loop systems do not yet exist. Today, only tools wielded by operators exist, even if the orders given to these tools have changed from a required physical gesture to turning on a device that comes with selection and engagement functionality.
-        </p>
-
-        <h3>The civilian development connection</h3>
-        <p>
-          A final technical consideration relates to the development of LAWS happening in parallel with consumer products. For a weapons system to "select" and "engage" a target, it must have the ability to both locate that target and make a reasoned decision on whether to engage. Autonomous vehicles must also see the road and make decisions based on that vision. Two points follow: the underlying technology — computer vision — in each use case is very similar, meaning consumer-focused companies improving AI products are, in some ways, pushing the cutting edge for military developments as well. And making long-lasting regulatory decisions about a technology in a rapid state of development is extraordinarily difficult.
-        </p>
-
-        <h2>Legal</h2>
-        <p>
-          The use of LAWS on the battlefield must comply with international humanitarian law (IHL) and international criminal law. IHL requires that all legal weapons systems maintain principles including necessity, distinction, and proportionality. In general terms, the machine could not be used unless it were able to understand context in terms of the appropriate use of force and distinguish between appropriate and inappropriate targets — combatants versus civilians.
-        </p>
-        <p>
-          Many countries were quick to support a preemptive ban on LAWS prior to their use on the battlefield. Missing among proponents of a ban, however, were countries like Israel, Russia, the United Kingdom, the United States, and South Korea. That voluntary preemptive bans have not reached unanimity does not mean LAWS are always legal — it means the legal framework remains genuinely contested.
-        </p>
-
-        <div class="pull-quote">
-          <p>"The liability-gap argument is most effective when considering that machines may make unpredictable or undesired actions, and those actions may seem unfairly pinned on an original decision-maker."</p>
-        </div>
-
-        <p>
-          There are concerns over the decisions made by LAWS given the potential for an accountability gap that could incentivize lawlessness — casting doubt on any type of permitted use. The machine's actions will lack a mens rea, thereby obviating the ability of criminal law to incentivize responsible use. At least in part, these concerns may be tempered when considering that only third-loop systems exist: a human operator will have nevertheless made a decision to use the autonomous weapons system in the first place.
-        </p>
-
-        <div class="article-aside">
-          <p>Research suggests that up to 45% of soldiers and 60% of Marines would not report a fellow soldier who injured or killed an innocent combatant. LAWS, by contrast, may be more transparent about decisions than human soldiers — though this apparent advantage opens its own set of questions about accountability.</p>
-        </div>
-
-        <h2>Conclusion</h2>
-        <p>
-          Automated weapons systems are currently and will continue to be found on the battlefield. These systems are increasingly capable of replacing human soldiers, could potentially change the way war operates on a global scale, and present complex ethical, moral, and legal issues that are difficult to reach global consensus on. Countries around the world are continuing to support a ban on LAWS, but holdouts remain — adding support for the regulation of LAWS in a way that creates reasonable boundaries on use rather than preemptive bans. Discussions over accountability and compliance with IHL are ongoing, and will likely continue to be so due to rapid innovation, political tensions, and issues over international harmonization.
+          <strong>Note:</strong> Developers must think carefully about how neural networks are used and what is — or is not — considered as input and output by a neural network.
         </p>
       </div>
 
-      <hr class="section-rule" style="margin-top: 0;" />
-      <footer style="padding: 3rem 2.5rem;">
-        <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
-        <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
-      </footer>
-    </div><!-- /page-warfare -->
+      <h2>Conclusion</h2>
+
+      <p>
+        It was not until recently that researchers began layering neurons in such a massive fashion that the aims of McCulloch, Pitts, and Rosenblatt came to fruition. These networks are beginning to match or outperform humans at a variety of tasks, though those breakthroughs are coming from scale rather than invention. Network types have been showing improvements in recent years: convolutional neural networks became popular for vision, generative adversarial networks started a generative trend, and diffusion models have more recently taken hold. And yet, the core of these networks, so far, has remained the groundwork laid by McCulloch, Pitts, and Rosenblatt.
+      </p>
+
+      <p>
+        Systems that rely on "more compute" to achieve better performance may get an architectural update in the future — one that could unlock performance boosts that seem limited when scale plateaus. For the moment, however, neural networks can still be abstracted, in some sense, to the perceptron from the 1950s, meaning that the understanding laid out above will continue to capture the essence of artificial intelligence for the foreseeable future.
+      </p>
+
+    </div>
+
+    <hr class="section-rule" style="margin-top: 0;" />
+    <footer style="padding: 3rem 2.5rem;">
+      <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
+      <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
+    </footer>
+
+  </div><!-- /article-neural -->
 
 
-    <!-- PAGE 3: SYNTHETIC DATA -->
-    <div class="page" id="page-synthetic">
-      <button class="back-btn" onclick="navigateTo('home')">← Back to all chapters</button>
+  <!-- ═══════════════ ARTICLE: WARFARE ═══════════════ -->
+  <div id="article-warfare">
 
-      <div class="article-header fade-in">
-        <div>
-          <p class="article-kicker">Synthetic Data &nbsp;·&nbsp; Chapter 100</p>
-          <h1 class="article-headline">Synthetic Data</h1>
-        </div>
-        <div class="article-meta-block">
-          <p class="article-standfirst">
-            At its most general, synthetic data is data that has been generated using a computer — a potential solution for problems of scale, privacy, sensitivity, and legality. It may be no silver bullet. But it is the direction the field is moving.
-          </p>
-          <div class="article-byline-row">
-            <div>
-              <p class="article-author">By Nathan Reitinger</p>
-              <p class="article-date">Encyclopedia of Artificial Intelligence and Law &nbsp;·&nbsp; Draft</p>
-            </div>
-            <a class="article-pdf-link" href="pdfs/synthetic-data.pdf" target="_blank" rel="noopener">Download PDF</a>
+    <header class="masthead">
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">Nathan Reitinger</a>
+      <nav>
+        <ul class="masthead-nav">
+          <li><a href="#" onclick="showHome(); return false;">← All Chapters</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <button class="back-btn" onclick="showHome()">← Back to all chapters</button>
+
+    <div class="article-header fade-in">
+      <div>
+        <p class="article-kicker">Warfare &nbsp;·&nbsp; Chapter 107</p>
+        <h1 class="article-headline">Warfare</h1>
+      </div>
+      <div class="article-meta-block">
+        <p class="article-standfirst">
+          Lethal autonomous weapons systems are weapons that, after being turned on, select and engage targets without human intervention. Accountability gaps, alignment with "just" war practices, and the moral weight of machines taking human lives are just a few of the headline issues in this area.
+        </p>
+        <div class="article-byline-row">
+          <div>
+            <p class="article-author">By Nathan Reitinger</p>
+            <p class="article-date">Encyclopedia of Artificial Intelligence and Law &nbsp;·&nbsp; Draft</p>
           </div>
+          <a class="article-pdf-link" href="pdfs/warfare.pdf" target="_blank" rel="noopener">Download PDF</a>
         </div>
       </div>
+    </div>
 
-      <hr class="section-rule" />
+    <hr class="section-rule" />
 
-      <div class="article-body">
-        <div class="article-draft-note">
-          <p><strong>Draft chapter.</strong> This is a pre-publication draft. The final version appears in the <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em>, available for purchase <a href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898" target="_blank" rel="noopener">on Amazon</a>.</p>
-        </div>
+    <div class="article-body">
 
-        <p class="lede">
-          Artificial intelligence's current era predominantly rests on scale. Massive amounts of data, large models, and cutting-edge hardware have given rise to AI performance that matches or outpaces human expertise on a variety of tasks. But data, in machine learning, is not created equal.
-        </p>
+      <div class="article-draft-note">
+        <p><strong>Draft chapter.</strong> This is a pre-publication draft. The final version appears in the <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em>, available for purchase <a href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898" target="_blank" rel="noopener">on Amazon</a>.</p>
+      </div>
+
+      <p class="lede">
+        What happens when artificial intelligence is given the power to make life-and-death decisions? Is it ever desirable for a machine to decide if a human lives or dies — and if so, what types of restrictions should be placed around weapons capable of making these decisions?
+      </p>
+
+      <p>
+        In the international law context, these types of weapons are known as "lethal autonomous weapons systems" — weapons that, after being turned on, select and engage targets without human intervention. These weapons represent one of the many difficult areas that have been upended by artificial intelligence. Accountability gaps, alignment with "just" war practices, and moral or ethical qualms with machines taking human lives are just a few of the headline issues in this area.
+      </p>
+
+      <h2>Technical</h2>
+
+      <p>
+        In the autonomous weapons hierarchy, LAWS sit second from the top. At the bottom are in-the-loop systems — those that require a human to "complete the loop," weapons that do not work without human engagement, like a single-action trigger pistol. Next up are on-the-loop systems, where the system may operate in a semi-autonomous mode, but a human remains a crucial component and is always able to intervene. Finally, out-of-the-loop systems are those that, once activated, select and engage targets without human intervention or control — these are LAWS.
+      </p>
+
+      <p>
+        It is worth noting that even the definition of LAWS has seen a large amount of contention. The mostly accepted definition is, in fact, narrow: LAWS refer specifically to situations where a weapons system both "selects" and "engages" targets. A sentry gun, once activated, fits this bill. Practical examples include the United States Navy's Phalanx system and Israel's Iron Dome — each may allow for human control, but a human's ability to monitor and react pales in comparison to the machine.
+      </p>
+
+      <div class="pull-quote">
+        <p>"They don't get hungry. They're not afraid. They don't forget their orders. They don't care if the guy next to them has just been shot. Will they do a better job than humans? Yes."</p>
+        <cite>— Gordon Johnson, Joint Forces Command, Pentagon, 2005</cite>
+      </div>
+
+      <p>
+        Some of the confusion in demarcating first- to second- to third-loop systems may come from thinking that current-day technology is more capable than it really is. If there existed a machine that not only selects and engages targets on its own but also possesses something akin to moral agency — debating the merits of actions with logical reasoning or seeming to express free will — then the definition of "fully" autonomous seems like it should take on a new meaning. These fourth-loop systems do not yet exist. Today, only tools wielded by operators exist, even if the orders given to these tools have changed from a required physical gesture to turning on a device that comes with selection and engagement functionality.
+      </p>
+
+      <h3>The civilian development connection</h3>
+
+      <p>
+        A final technical consideration relates to the development of LAWS happening in parallel with consumer products. For a weapons system to "select" and "engage" a target, it must have the ability to both locate that target and make a reasoned decision on whether to engage. Autonomous vehicles must also see the road and make decisions based on that vision. Two points follow: the underlying technology — computer vision — in each use case is very similar, meaning consumer-focused companies improving AI products are, in some ways, pushing the cutting edge for military developments as well. And making long-lasting regulatory decisions about a technology in a rapid state of development is extraordinarily difficult.
+      </p>
+
+      <h2>Legal</h2>
+
+      <p>
+        The use of LAWS on the battlefield must comply with international humanitarian law (IHL) and international criminal law. IHL requires that all legal weapons systems maintain principles including necessity, distinction, and proportionality. In general terms, the machine could not be used unless it were able to understand context in terms of the appropriate use of force and distinguish between appropriate and inappropriate targets — combatants versus civilians.
+      </p>
+
+      <p>
+        Many countries were quick to support a preemptive ban on LAWS prior to their use on the battlefield. Missing among proponents of a ban, however, were countries like Israel, Russia, the United Kingdom, the United States, and South Korea. That voluntary preemptive bans have not reached unanimity does not mean LAWS are always legal — it means the legal framework remains genuinely contested.
+      </p>
+
+      <div class="pull-quote">
+        <p>"The liability-gap argument is most effective when considering that machines may make unpredictable or undesired actions, and those actions may seem unfairly pinned on an original decision-maker."</p>
+      </div>
+
+      <p>
+        There are concerns over the decisions made by LAWS given the potential for an accountability gap that could incentivize lawlessness — casting doubt on any type of permitted use. The machine's actions will lack a mens rea, thereby obviating the ability of criminal law to incentivize responsible use. At least in part, these concerns may be tempered when considering that only third-loop systems exist: a human operator will have nevertheless made a decision to use the autonomous weapons system in the first place.
+      </p>
+
+      <div class="article-aside">
         <p>
-          Some data, like a social security number, has privacy or sensitivity implications. Other data, like creative works of expression, has legal implications such as copyright. And still other data is simply low quality — not enough of it to be useful, or too unique to draw patterns from. Moreover, there exists a reasonable question of whether scale itself will plateau: Is there enough data in the world to maintain the appetite of the massive machine learning models we are creating?
-        </p>
-        <p>
-          What all of this pushes toward is synthetic data — a potential solution for a variety of data problems. Generative AI is a general-purpose tool with many applications, though image generators and deepfakes often take the limelight. Of particular interest to privacy scholars, however, generation can also be pointed at tabular data found in a dataset.
-        </p>
-
-        <h2>Terminology</h2>
-        <p>
-          Synthetic data is a term with at least two meanings found in the literature, and the difference is one of process: how was the synthetic data created? The original concept refers to the creation of a "dummy" dataset by cloning a "real" dataset in terms of the original dataset's statistical properties. For example, creating a synthetic dataset of an array of numbers — replicating its density and randomness — could produce a replica dataset that has similar statistical properties and may be used in place of the original.
-        </p>
-        <p>
-          The newer meaning likewise refers to the creation of a dummy dataset based on a real dataset, but the process is through generative artificial intelligence rather than careful assessment. Machine learning can figure out on its own what statistical properties to focus on — all the developer needs to do is train a model on real data with the goal of producing similarly-looking replica data.
-        </p>
-
-        <div class="pull-quote">
-          <p>"Synthetic data replaces original data and thereby permits useful data analysis without, potentially, encumbering the sensitivity of the original, raw data."</p>
-        </div>
-
-        <h2>Privacy</h2>
-        <p>
-          The idea that synthetic data can be used in machine learning is appealing. What could be the downside of removing the barriers of low-quality data by replacing it with new, high-quality data? This motivation and appearance-based perspective, however, elides the potential privacy concerns that synthetic data encumbers.
-        </p>
-        <p>
-          Similar to the failures of anonymization experienced by the AOL search-query debacle and the Netflix Prize affair, synthetic data is vulnerable to unverified claims of anonymity. In those two privacy failures, AOL and Netflix made efforts to anonymize their datasets before releasing them into the wild, using techniques like generalization (turning zip codes into country names) or suppression (replacing the last four digits of a social security number with asterisks). These techniques make datasets appear anonymous. But given the large amount of data existing beyond siloed datasets, researchers and journalists in both cases were able to patch up the holes in sanitized data and reidentify individuals.
-        </p>
-
-        <div class="article-aside">
-          <p>Professor Sweeney demonstrated these vulnerabilities as early as 1997, reidentifying hospital records of a Massachusetts governor after the records had been "anonymized" — illustrating that the problem predates modern machine learning by decades.</p>
-        </div>
-
-        <p>
-          Synthetic data presents largely unverified claims of anonymity, though it does have notable advantages: it is generative rather than subtractive, using noise to replace data rather than removing it entirely. Computer science researchers looking into synthetic data's privacy properties have identified "highly variable privacy gain" and "unpredictable utility loss." On top of this, there is a legal concern that "vanilla" synthetic data — generative data that did not undergo additional privacy-preserving processing like differential privacy — will be accepted as sufficient sanitization by certain data-protective statutes without thorough analysis of the risks.
-        </p>
-
-        <h2>The Privacy–Utility Tradeoff</h2>
-        <p>
-          It is undeniable that some amount of synthetic data is useful to artificial intelligence. It is nearly unanimous practice to use a simple type of synthetic data via single-image data transformations — flipping an image horizontally or zooming in — when training image generators. Moreover, most production models used by large companies are trained on more advanced synthetic data to balance training datasets. But when improperly used, synthetic data makes promises it cannot keep.
-        </p>
-
-        <div class="pull-quote">
-          <p>"A perfectly private dataset has no data in it. A perfectly useful dataset does not protect privacy in any way."</p>
-        </div>
-
-        <p>
-          Researchers are starting to look into more formal guarantees of privacy using tools like differential privacy, which "allows one to learn the statistics of a group without also learning the statistics of the individuals making up the group." Adding differential privacy to a synthetic data pipeline seeks to offer a best-of-both-worlds approach — privacy plus utility — but inherits issues with a necessary amount of data loss. Whenever non-real data is added to a dataset, a tradeoff occurs between privacy and utility.
-        </p>
-
-        <h2>Conclusion</h2>
-        <p>
-          The aim of future work is to better balance the privacy–utility tradeoff using synthetic data in a way that allows the data to be useful, but private. That balance has not yet been struck. What is clear is that as machine learning models grow and the appetite for training data outpaces what the world can organically supply, synthetic data will move from an interesting research curiosity to a foundational infrastructure of the field — bringing its unresolved questions with it.
+          Research suggests that up to 45% of soldiers and 60% of Marines would not report a fellow soldier who injured or killed an innocent combatant. LAWS, by contrast, may be more transparent about decisions than human soldiers — though this apparent advantage opens its own set of questions about accountability.
         </p>
       </div>
 
-      <hr class="section-rule" style="margin-top: 0;" />
-      <footer style="padding: 3rem 2.5rem;">
-        <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
-        <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
-      </footer>
-    </div><!-- /page-synthetic -->
+      <h2>Conclusion</h2>
 
-  </div><!-- /pages-container -->
+      <p>
+        Automated weapons systems are currently and will continue to be found on the battlefield. These systems are increasingly capable of replacing human soldiers, could potentially change the way war operates on a global scale, and present complex ethical, moral, and legal issues that are difficult to reach global consensus on. Countries around the world are continuing to support a ban on LAWS, but holdouts remain — adding support for the regulation of LAWS in a way that creates reasonable boundaries on use rather than preemptive bans. Discussions over accountability and compliance with IHL are ongoing, and will likely continue to be so due to rapid innovation, political tensions, and issues over international harmonization.
+      </p>
+
+    </div>
+
+    <hr class="section-rule" style="margin-top: 0;" />
+    <footer style="padding: 3rem 2.5rem;">
+      <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
+      <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
+    </footer>
+
+  </div><!-- /article-warfare -->
+
+
+  <!-- ═══════════════ ARTICLE: SYNTHETIC DATA ═══════════════ -->
+  <div id="article-synthetic">
+
+    <header class="masthead">
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">Nathan Reitinger</a>
+      <nav>
+        <ul class="masthead-nav">
+          <li><a href="#" onclick="showHome(); return false;">← All Chapters</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <button class="back-btn" onclick="showHome()">← Back to all chapters</button>
+
+    <div class="article-header fade-in">
+      <div>
+        <p class="article-kicker">Synthetic Data &nbsp;·&nbsp; Chapter 100</p>
+        <h1 class="article-headline">Synthetic Data</h1>
+      </div>
+      <div class="article-meta-block">
+        <p class="article-standfirst">
+          At its most general, synthetic data is data that has been generated using a computer — a potential solution for problems of scale, privacy, sensitivity, and legality. It may be no silver bullet. But it is the direction the field is moving.
+        </p>
+        <div class="article-byline-row">
+          <div>
+            <p class="article-author">By Nathan Reitinger</p>
+            <p class="article-date">Encyclopedia of Artificial Intelligence and Law &nbsp;·&nbsp; Draft</p>
+          </div>
+          <a class="article-pdf-link" href="pdfs/synthetic-data.pdf" target="_blank" rel="noopener">Download PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-rule" />
+
+    <div class="article-body">
+
+      <div class="article-draft-note">
+        <p><strong>Draft chapter.</strong> This is a pre-publication draft. The final version appears in the <em>Elgar Concise Encyclopedia of Artificial Intelligence and Law</em>, available for purchase <a href="https://www.amazon.com/Elgar-Concise-Encyclopedia-Artificial-Intelligence/dp/1035336898" target="_blank" rel="noopener">on Amazon</a>.</p>
+      </div>
+
+      <p class="lede">
+        Artificial intelligence's current era predominantly rests on scale. Massive amounts of data, large models, and cutting-edge hardware have given rise to AI performance that matches or outpaces human expertise on a variety of tasks. But data, in machine learning, is not created equal.
+      </p>
+
+      <p>
+        Some data, like a social security number, has privacy or sensitivity implications. Other data, like creative works of expression, has legal implications such as copyright. And still other data is simply low quality — not enough of it to be useful, or too unique to draw patterns from. Moreover, there exists a reasonable question of whether scale itself will plateau: Is there enough data in the world to maintain the appetite of the massive machine learning models we are creating?
+      </p>
+
+      <p>
+        What all of this pushes toward is synthetic data — a potential solution for a variety of data problems. Generative AI is a general-purpose tool with many applications, though image generators and deepfakes often take the limelight. Of particular interest to privacy scholars, however, generation can also be pointed at tabular data found in a dataset.
+      </p>
+
+      <h2>Terminology</h2>
+
+      <p>
+        Synthetic data is a term with at least two meanings found in the literature, and the difference is one of process: how was the synthetic data created? The original concept refers to the creation of a "dummy" dataset by cloning a "real" dataset in terms of the original dataset's statistical properties. For example, creating a synthetic dataset of an array of numbers — replicating its density and randomness — could produce a replica dataset that has similar statistical properties and may be used in place of the original.
+      </p>
+
+      <p>
+        The newer meaning likewise refers to the creation of a dummy dataset based on a real dataset, but the process is through generative artificial intelligence rather than careful assessment. Machine learning can figure out on its own what statistical properties to focus on — all the developer needs to do is train a model on real data with the goal of producing similarly-looking replica data.
+      </p>
+
+      <div class="pull-quote">
+        <p>"Synthetic data replaces original data and thereby permits useful data analysis without, potentially, encumbering the sensitivity of the original, raw data."</p>
+      </div>
+
+      <h2>Privacy</h2>
+
+      <p>
+        The idea that synthetic data can be used in machine learning is appealing. What could be the downside of removing the barriers of low-quality data by replacing it with new, high-quality data? This motivation and appearance-based perspective, however, elides the potential privacy concerns that synthetic data encumbers.
+      </p>
+
+      <p>
+        Similar to the failures of anonymization experienced by the AOL search-query debacle and the Netflix Prize affair, synthetic data is vulnerable to unverified claims of anonymity. In those two privacy failures, AOL and Netflix made efforts to anonymize their datasets before releasing them into the wild, using techniques like generalization (turning zip codes into country names) or suppression (replacing the last four digits of a social security number with asterisks). These techniques make datasets appear anonymous. But given the large amount of data existing beyond siloed datasets, researchers and journalists in both cases were able to patch up the holes in sanitized data and reidentify individuals.
+      </p>
+
+      <div class="article-aside">
+        <p>
+          Professor Sweeney demonstrated these vulnerabilities as early as 1997, reidentifying hospital records of a Massachusetts governor after the records had been "anonymized" — illustrating that the problem predates modern machine learning by decades.
+        </p>
+      </div>
+
+      <p>
+        Synthetic data presents largely unverified claims of anonymity, though it does have notable advantages: it is generative rather than subtractive, using noise to replace data rather than removing it entirely. Computer science researchers looking into synthetic data's privacy properties have identified "highly variable privacy gain" and "unpredictable utility loss." On top of this, there is a legal concern that "vanilla" synthetic data — generative data that did not undergo additional privacy-preserving processing like differential privacy — will be accepted as sufficient sanitization by certain data-protective statutes without thorough analysis of the risks.
+      </p>
+
+      <h2>The Privacy–Utility Tradeoff</h2>
+
+      <p>
+        It is undeniable that some amount of synthetic data is useful to artificial intelligence. It is nearly unanimous practice to use a simple type of synthetic data via single-image data transformations — flipping an image horizontally or zooming in — when training image generators. Moreover, most production models used by large companies are trained on more advanced synthetic data to balance training datasets. But when improperly used, synthetic data makes promises it cannot keep.
+      </p>
+
+      <div class="pull-quote">
+        <p>"A perfectly private dataset has no data in it. A perfectly useful dataset does not protect privacy in any way."</p>
+      </div>
+
+      <p>
+        Researchers are starting to look into more formal guarantees of privacy using tools like differential privacy, which "allows one to learn the statistics of a group without also learning the statistics of the individuals making up the group." Adding differential privacy to a synthetic data pipeline seeks to offer a best-of-both-worlds approach — privacy plus utility — but inherits issues with a necessary amount of data loss. Whenever non-real data is added to a dataset, a tradeoff occurs between privacy and utility.
+      </p>
+
+      <h2>Conclusion</h2>
+
+      <p>
+        The aim of future work is to better balance the privacy–utility tradeoff using synthetic data in a way that allows the data to be useful, but private. That balance has not yet been struck. What is clear is that as machine learning models grow and the appetite for training data outpaces what the world can organically supply, synthetic data will move from an interesting research curiosity to a foundational infrastructure of the field — bringing its unresolved questions with it.
+      </p>
+
+    </div>
+
+    <hr class="section-rule" style="margin-top: 0;" />
+    <footer style="padding: 3rem 2.5rem;">
+      <span class="footer-wordmark">Nathan Reitinger — Artificial Intelligence</span>
+      <span class="footer-copy">Essays on intelligence, artificial and otherwise.</span>
+    </footer>
+
+  </div><!-- /article-synthetic -->
 
 
   <script>
-    // ─── Page map ───────────────────────────────────────────────
-    const PAGE_INDEX = { home: 0, neural: 1, warfare: 2, synthetic: 3 };
-    const PAGE_KEYS  = ['home', 'neural', 'warfare', 'synthetic'];
-    const container  = document.getElementById('pages-container');
-    const navBack    = document.getElementById('nav-back');
-
-    // ─── Core navigation ────────────────────────────────────────
-    function applyPage(key, pushState) {
-      const idx = PAGE_INDEX[key] ?? 0;
-
-      // Slide the container
-      container.style.transform = `translateX(-${idx * 25}%)`;
-
-      // Scroll the target page to top
-      const targetPage = document.getElementById('page-' + key);
-      if (targetPage) targetPage.scrollTop = 0;
-
-      // Show/hide "All Chapters" back link in masthead
-      navBack.style.display = (key === 'home') ? 'none' : 'list-item';
-
-      // Update page title
-      const titles = {
-        home: 'Nathan Reitinger — Artificial Intelligence',
-        neural: 'Neural Networks — Nathan Reitinger',
-        warfare: 'Warfare — Nathan Reitinger',
-        synthetic: 'Synthetic Data — Nathan Reitinger',
-      };
-      document.title = titles[key] || titles.home;
-
-      // Push or replace history state
-      if (pushState) {
-        history.pushState({ page: key }, '', '#' + key);
-      }
-
-      // Trigger fade-ins on newly visible page
-      setTimeout(() => triggerFadeIns(targetPage), 50);
+    function showArticle(id) {
+      document.getElementById('home').style.display = 'none';
+      ['article-neural','article-warfare','article-synthetic'].forEach(a => {
+        document.getElementById(a).style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
+      window.scrollTo(0, 0);
+      triggerFadeIns();
     }
 
-    function navigateTo(key) {
-      applyPage(key, true);
+    function showHome() {
+      ['article-neural','article-warfare','article-synthetic'].forEach(a => {
+        document.getElementById(a).style.display = 'none';
+      });
+      document.getElementById('home').style.display = 'block';
+      window.scrollTo(0, 0);
     }
 
-    // ─── Browser back/forward ────────────────────────────────────
-    window.addEventListener('popstate', (e) => {
-      const key = e.state?.page || hashToKey();
-      applyPage(key, false);
-    });
-
-    // ─── Hash-based deep linking ─────────────────────────────────
-    function hashToKey() {
-      const h = location.hash.replace('#', '');
-      return PAGE_INDEX[h] !== undefined ? h : 'home';
-    }
-
-    // ─── Fade-in observer ────────────────────────────────────────
-    function triggerFadeIns(root) {
-      const els = (root || document).querySelectorAll('.fade-in:not(.visible)');
+    function triggerFadeIns() {
+      const els = document.querySelectorAll('.fade-in');
       const obs = new IntersectionObserver((entries) => {
         entries.forEach((e, i) => {
           if (e.isIntersecting) {
@@ -947,16 +970,10 @@
           }
         });
       }, { threshold: 0.08 });
-      els.forEach(el => obs.observe(el));
+      els.forEach(el => { el.classList.remove('visible'); obs.observe(el); });
     }
 
-    // ─── Init ────────────────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', () => {
-      const startKey = hashToKey();
-      // Replace initial history entry so back from first page = correct state
-      history.replaceState({ page: startKey }, '', '#' + startKey);
-      applyPage(startKey, false);
-    });
+    document.addEventListener('DOMContentLoaded', triggerFadeIns);
   </script>
 
 </body>
