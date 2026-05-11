@@ -62,6 +62,7 @@
       z-index: 100;
     }
     .masthead-wordmark {
+      order: 2;
       font-family: var(--mono);
       font-size: 0.72rem;
       letter-spacing: 0.35em;
@@ -74,7 +75,7 @@
       filter: blur(1.5px);
       transition: filter 0.2s ease;
     }
-    .masthead-nav { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .masthead-nav { order: 1; display: flex; gap: 2rem; list-style: none; align-items: center; }
     .masthead-nav a {
       font-family: var(--sans);
       font-size: 0.68rem;
@@ -476,21 +477,18 @@
   <div id="home">
 
     <header class="masthead">
-
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">Nathan Reitinger</a>
       <nav>
         <ul class="masthead-nav">
-          <!-- <li><a href="#articles">Chapters</a></li> -->
-
           <li>
             <a href="https://github.com/nathanReitinger/ai-encyclopedia" target="_blank" rel="noopener" class="github-link" aria-label="GitHub">
-              <!-- GitHub Icon (inline SVG) -->
-              <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor">
+              <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="display:block;">
                 <path d="M12 .5C5.73.5.75 5.62.75 12.1c0 5.2 3.44 9.62 8.2 11.18.6.12.82-.27.82-.58v-2.1c-3.34.75-4.04-1.65-4.04-1.65-.55-1.45-1.35-1.84-1.35-1.84-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.3 1.86 1.3 1.08 1.9 2.82 1.35 3.5 1.03.11-.8.42-1.35.76-1.66-2.66-.31-5.46-1.37-5.46-6.1 0-1.35.47-2.46 1.25-3.33-.13-.31-.54-1.58.12-3.3 0 0 1.02-.33 3.34 1.27.97-.28 2.02-.42 3.06-.43 1.04.01 2.09.15 3.06.43 2.32-1.6 3.34-1.27 3.34-1.27.66 1.72.25 2.99.12 3.3.78.87 1.25 1.98 1.25 3.33 0 4.74-2.81 5.79-5.49 6.09.43.39.81 1.16.81 2.34v3.46c0 .31.22.7.83.58 4.76-1.56 8.2-5.98 8.2-11.18C23.25 5.62 18.27.5 12 .5z"/>
               </svg>
             </a>
           </li>
           <li>
-            <a href="https://nathanreitinger.github.io/ai-encyclopedia/" rel="noopener" aria-label="Home" class="home-icon-btn">
+            <a href="https://nathanreitinger.github.io/ai-encyclopedia/" aria-label="Home" class="home-icon-btn">
               <svg height="16" width="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="12,2 22,10 22,22 16,22 16,14 8,14 8,22 2,22 2,10"/>
                 <line x1="2" y1="10" x2="22" y2="10"/>
@@ -499,12 +497,6 @@
           </li>
         </ul>
       </nav>
-
-      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">
-        Nathan Reitinger
-      </a>
-
-
     </header>
 
     <section class="hero fade-in">
@@ -622,29 +614,28 @@
   <!-- ═══════════════ ARTICLE: NEURAL NETWORKS ═══════════════ -->
   <div id="article-neural">
 
-  <header class="masthead">
-    <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">Nathan Reitinger</a>
-    <nav>
-      <ul class="masthead-nav">
-        <li>
-          <a href="https://github.com/nathanReitinger/ai-encyclopedia" target="_blank" rel="noopener" class="github-link" aria-label="GitHub">
-            <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 .5C5.73.5.75 5.62.75 12.1c0 5.2 3.44 9.62 8.2 11.18.6.12.82-.27.82-.58v-2.1c-3.34.75-4.04-1.65-4.04-1.65-.55-1.45-1.35-1.84-1.35-1.84-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.3 1.86 1.3 1.08 1.9 2.82 1.35 3.5 1.03.11-.8.42-1.35.76-1.66-2.66-.31-5.46-1.37-5.46-6.1 0-1.35.47-2.46 1.25-3.33-.13-.31-.54-1.58.12-3.3 0 0 1.02-.33 3.34 1.27.97-.28 2.02-.42 3.06-.43 1.04.01 2.09.15 3.06.43 2.32-1.6 3.34-1.27 3.34-1.27.66 1.72.25 2.99.12 3.3.78.87 1.25 1.98 1.25 3.33 0 4.74-2.81 5.79-5.49 6.09.43.39.81 1.16.81 2.34v3.46c0 .31.22.7.83.58 4.76-1.56 8.2-5.98 8.2-11.18C23.25 5.62 18.27.5 12 .5z"/>
-            </svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://nathanreitinger.github.io/ai-encyclopedia/" aria-label="Home" class="home-icon-btn">
-            <svg height="16" width="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12,2 22,10 22,22 16,22 16,14 8,14 8,22 2,22 2,10"/>
-              <line x1="2" y1="10" x2="22" y2="10"/>
-            </svg>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
+    <header class="masthead">
+      <a class="masthead-wordmark" href="https://www.law.northwestern.edu/faculty/profiles/nathanreitinger/" target="_blank" rel="noopener">Nathan Reitinger</a>
+      <nav>
+        <ul class="masthead-nav">
+          <li>
+            <a href="https://github.com/nathanReitinger/ai-encyclopedia" target="_blank" rel="noopener" class="github-link" aria-label="GitHub">
+              <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="display:block;">
+                <path d="M12 .5C5.73.5.75 5.62.75 12.1c0 5.2 3.44 9.62 8.2 11.18.6.12.82-.27.82-.58v-2.1c-3.34.75-4.04-1.65-4.04-1.65-.55-1.45-1.35-1.84-1.35-1.84-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.3 1.86 1.3 1.08 1.9 2.82 1.35 3.5 1.03.11-.8.42-1.35.76-1.66-2.66-.31-5.46-1.37-5.46-6.1 0-1.35.47-2.46 1.25-3.33-.13-.31-.54-1.58.12-3.3 0 0 1.02-.33 3.34 1.27.97-.28 2.02-.42 3.06-.43 1.04.01 2.09.15 3.06.43 2.32-1.6 3.34-1.27 3.34-1.27.66 1.72.25 2.99.12 3.3.78.87 1.25 1.98 1.25 3.33 0 4.74-2.81 5.79-5.49 6.09.43.39.81 1.16.81 2.34v3.46c0 .31.22.7.83.58 4.76-1.56 8.2-5.98 8.2-11.18C23.25 5.62 18.27.5 12 .5z"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://nathanreitinger.github.io/ai-encyclopedia/" aria-label="Home" class="home-icon-btn">
+              <svg height="16" width="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12,2 22,10 22,22 16,22 16,14 8,14 8,22 2,22 2,10"/>
+                <line x1="2" y1="10" x2="22" y2="10"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
     <button class="back-btn" onclick="showHome()">← Back to all chapters</button>
 
     <div class="article-header fade-in">
@@ -775,7 +766,7 @@
       <ul class="masthead-nav">
         <li>
           <a href="https://github.com/nathanReitinger/ai-encyclopedia" target="_blank" rel="noopener" class="github-link" aria-label="GitHub">
-            <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor">
+            <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="display:block;">
               <path d="M12 .5C5.73.5.75 5.62.75 12.1c0 5.2 3.44 9.62 8.2 11.18.6.12.82-.27.82-.58v-2.1c-3.34.75-4.04-1.65-4.04-1.65-.55-1.45-1.35-1.84-1.35-1.84-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.3 1.86 1.3 1.08 1.9 2.82 1.35 3.5 1.03.11-.8.42-1.35.76-1.66-2.66-.31-5.46-1.37-5.46-6.1 0-1.35.47-2.46 1.25-3.33-.13-.31-.54-1.58.12-3.3 0 0 1.02-.33 3.34 1.27.97-.28 2.02-.42 3.06-.43 1.04.01 2.09.15 3.06.43 2.32-1.6 3.34-1.27 3.34-1.27.66 1.72.25 2.99.12 3.3.78.87 1.25 1.98 1.25 3.33 0 4.74-2.81 5.79-5.49 6.09.43.39.81 1.16.81 2.34v3.46c0 .31.22.7.83.58 4.76-1.56 8.2-5.98 8.2-11.18C23.25 5.62 18.27.5 12 .5z"/>
             </svg>
           </a>
@@ -904,7 +895,7 @@
       <ul class="masthead-nav">
         <li>
           <a href="https://github.com/nathanReitinger/ai-encyclopedia" target="_blank" rel="noopener" class="github-link" aria-label="GitHub">
-            <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor">
+            <svg height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="display:block;">
               <path d="M12 .5C5.73.5.75 5.62.75 12.1c0 5.2 3.44 9.62 8.2 11.18.6.12.82-.27.82-.58v-2.1c-3.34.75-4.04-1.65-4.04-1.65-.55-1.45-1.35-1.84-1.35-1.84-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.3 1.86 1.3 1.08 1.9 2.82 1.35 3.5 1.03.11-.8.42-1.35.76-1.66-2.66-.31-5.46-1.37-5.46-6.1 0-1.35.47-2.46 1.25-3.33-.13-.31-.54-1.58.12-3.3 0 0 1.02-.33 3.34 1.27.97-.28 2.02-.42 3.06-.43 1.04.01 2.09.15 3.06.43 2.32-1.6 3.34-1.27 3.34-1.27.66 1.72.25 2.99.12 3.3.78.87 1.25 1.98 1.25 3.33 0 4.74-2.81 5.79-5.49 6.09.43.39.81 1.16.81 2.34v3.46c0 .31.22.7.83.58 4.76-1.56 8.2-5.98 8.2-11.18C23.25 5.62 18.27.5 12 .5z"/>
             </svg>
           </a>
